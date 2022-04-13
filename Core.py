@@ -1,4 +1,6 @@
 import json
+import Main
+import RunLine
 
 # System Configuration
 StarSettings = json.load(open("settings.json", "r"))
@@ -20,7 +22,17 @@ if StarSettings["alerts"]["AnnounceOutputs"] == True:
 ErrorReturn = f"{Alert} - We were unable to complete this request." # The string that the system feeds back
 
 # Storage
-GlobalTD = {}
+GlobalTD = {
+    "Test": "Hello!"
+}
+Modules = {
+    "Main": {
+        "Enabled": True
+    },
+    "WindowExtension": {
+        "Enabled": True
+    }
+}
 GlobalClasses = {}
 GlobalVariables = {
     "ExampleTextVariable": "I hold an example value :P",
@@ -131,6 +143,22 @@ def grabValues(Input):
 def getBubble(bubble, attachedVariables):
     # Get Bubble
     # Check if Flag
+
+    # @ = Flag
+    # # = Input
+    # & = Run As Command then Use Return Value
+    # Blank = Raw
+    if bubble.startswith("&"):
+        bubble = bubble.replace("&", "", 1)
+        print("bubble:", bubble)
+        # TemporaryObject = {
+        #     "return": "none?"
+        # }
+        TemporaryObject, Test = Main.runLine(bubble, {
+            "SpecialFlag": "SentFromCore"
+        }, attachedVariables)
+        print(TemporaryObject, Test)
+        return "ReturnFunctionWillBeAddedNextUpdate"#TemporaryObject["return"]
     if bubble.startswith("@"):
         bubble = bubble.replace("@", "", 1)
         try:

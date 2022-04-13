@@ -24,3 +24,15 @@ b:0.2.4
 + Copied Scripts/FeatureTest.str to a new file "Test.str"
 + Added "ResponseInformation" object to settings.json.
     This will be used to attach thread information before lines, at a later date.
+    
+    0.2.4:4 - 13-04-22 - 6:47pm
++ Core.py now has Main.py as a module
+* GlobalTD(Main) now has a default value
++ getBubble(Core) now has the "&" accessory added.
+    This doesn't do the intended function yet. It returns a placeholder value.
++ "GoTicker" Variable has been added and in referenced by RunLine
++ runLine adds 1 to the "LinesRan" entry to TempObject upon any command that's run (so long as linesran is in the TempData)
++ Return Command
++ Run Command now uses TempObject rather than GlobalTempData for the attached TempObject
++ Main.py only brings up the command line if it's ran as a non-module
+- Main.py no longer prints end_time as well as the official time
