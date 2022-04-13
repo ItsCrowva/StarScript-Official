@@ -1,0 +1,42 @@
+fshout Star Script 5 - Function Test
+
+fshout This is to test if running a script in different executers- gives the same result.\n
+
+$setred
+fshout First~ We present ourselves with some color tests.
+fshout This should be red.
+$clearcol
+fshout And~ back to white.
+
+fshout OK OK OK- Let's test whether or not multiple actions on a single line is possible.
+fshout Line1^*^fshout Line2^*^fshout Line3
+
+fshout And let's test if safekeeping is possible. You should see this sente\^*^nce completed on a singular output.
+
+
+class string {
+    @global
+    @flag Input: textValue
+
+        // 30-03-22 - 12:29pm
+
+    func new {
+        return Input
+    }
+    func value {
+        return Input 
+    }
+}
+
+fshout We've just created a class known as "string"
+fshout Now we'll create a variable of it
+var ping is string = it worked.
+fshout There is now a variable known as "ping" with the value "it worked"
+fshout Now let's try the print function- paired with a link to the string class
+print string.value: I am from the string class
+print string.value: We're just filling it in with another message
+print string.value: and another!
+fshout 3 messages were just sent from the print function
+fshout What happens when we print the value of ping?
+print ping.value
+fshout Expected Result: it worked.

@@ -1,0 +1,26 @@
+{
+    "name": "star-script",
+    "displayName": "Star-Script",
+    "description": "Highlights Star Script Files!",
+    "version": "0.0.1",
+    "publisher": "nova",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "str",
+            "aliases": ["str", "strscr"],
+            "extensions": [".str", ".strscr"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "str",
+            "scopeName": "source.str",
+            "path": "./syntaxes/log.tmLanguage.json"
+        }]
+    }
+}

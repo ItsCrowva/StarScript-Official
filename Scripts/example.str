@@ -1,0 +1,19 @@
+import simpleTools as nothing
+
+// Simple Random Number Game by @ItsSerenityGrace
+
+
+var version is string = 1.0
+
+// Display Version
+print string.value: Youre on version\:
+print version.value
+
+// Do the test command
+test string.value: Value1, string.value: ValueTwo
+
+// Re-print version
+print version.value
+
+// Expected Result: 1.0
+// Current Result: ValueTwo

@@ -1,0 +1,66 @@
+// SimpleTools
+
+// A base module for StrLng 5- Made by Nova Buckley
+printtest
+
+class list {
+    @global
+    @flag Input: listValue
+    // var Input is any? = "example"
+    printtest
+    func tets {
+        return Input
+    }
+    func append {
+        @flag value // The Append Value
+        print string.value: Hewo from the list append!
+    }
+}
+
+class integer {
+    @global
+    @flag Input: numberValue
+
+    func set {
+        @flag value // The Value to replace as
+
+        @xyz // Perform as shortkey
+        classOveride to value
+    }
+    func value {
+        return Input
+    }
+}
+
+class string {
+    @global
+    @flag Input: textValue
+
+    printtest
+
+    // You can not print using a class's local values. We're gonna have to hope this works. // print string.value: You should see this only twice.
+
+    func new {
+        // Sets this in the variable area!
+        return Input
+    }
+    func value {
+        return Input 
+    }
+    func startswith {
+        @flag startswith // Grabs the value we wanna check if Input Starts with
+        
+        puretext(Input).lettergrab 0, Input
+        if .sel, ==, startswith { // Since .sel is a ".sel" as opposed to an "@sel"- The selection we need is the above commands result!
+            return True
+        }
+        else {
+            return False
+        }
+    }
+    printtest
+}
+printtest
+// Example Codes
+// print string(Hello).startswith($)
+// var test is string = "Hello! This is a test!"

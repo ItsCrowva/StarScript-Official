@@ -1,0 +1,20 @@
+-- Welcome to the main module!
+-- 7-04-22 by Nova B
+
+-- Strings & Stuff:
+class string {
+    @flag Input: raw
+
+    func value {
+        return @Input
+    }
+    func startswith {
+        @flag Index: raw
+        if @Input, ==, @Index {
+            return True
+        }
+        else {
+            return False
+        }
+    }
+}

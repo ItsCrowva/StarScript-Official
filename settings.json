@@ -1,0 +1,26 @@
+{
+    "quickInfo": "This is to configure strscr for Python/GoLang/Swift",
+    "errorsCrashProgram": true,
+    "tempValuesAreBinding": false,
+    "runCommandLineWhenDone": true,
+    "Install": "C:\\Users\\Andi\\Documents\\desktop\\starScript-0.2.3",
+    "alerts": {
+        "Notice": false,
+        "Extra": false,
+        "Warning": true,
+        "Alert": true,
+        "Error": true,
+        "Console": true,
+        "Success": false,
+        "AnnounceOutputs": false,
+        "Comment": false,
+        "Debug": true
+    },
+    "output": {
+        "settingThatDoesNothing": true,
+        "watchVariables": true,
+        "tagOutputs": false,
+        "spammyEndMessage": false,
+        "uselessfuckingclasscheckup": true
+    }
+}
