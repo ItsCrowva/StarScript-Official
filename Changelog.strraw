@@ -24,7 +24,7 @@ b:0.2.4
 + Copied Scripts/FeatureTest.str to a new file "Test.str"
 + Added "ResponseInformation" object to settings.json.
     This will be used to attach thread information before lines, at a later date.
-    
+
     0.2.4:4 - 13-04-22 - 6:47pm
 + Core.py now has Main.py as a module
 * GlobalTD(Main) now has a default value
@@ -36,3 +36,13 @@ b:0.2.4
 + Run Command now uses TempObject rather than GlobalTempData for the attached TempObject
 + Main.py only brings up the command line if it's ran as a non-module
 - Main.py no longer prints end_time as well as the official time
+
+    0.2.4:5 - 13-04-22 - 7:56pm
+- Removed GlobalTD & Modules from Core.py and put into Main
++ vReturn variable in Core.py (For the return statement)
++ setvReturn function
+* Bubble Function now respects comments.... mostly....
++ "&" bubble now works
+* references to core.py in the return statement now directly start with "Core."
+* Return Statement now sends the return function by directly changing "vReturn" in Core.py
+* Made some appends to PerformanceTest.str

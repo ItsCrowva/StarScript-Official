@@ -119,6 +119,7 @@
 #                                   I will now add threading to StarScript bc it was totally wanted.
 #   I've Moved a bunch of stuff from the main.py file to the new Changelog.json!
 #   6:48pm until 7:11pm (13-04-22) - Returns are now working!!! the say command accepts return statements
+#   7:40pm until 
 
 
 #from compile import *
@@ -166,6 +167,7 @@ from unicodedata import name
 # 
 #       With this i'll also be working on various different executers on the side- just to get this looking perfect.
 
+
 GlobalTD = {
     "Test": "Hello!"
 }
@@ -196,7 +198,46 @@ def runLine(lineScript, tempObject, attachedVariables):
         tempObject["LinesRan"] += 1
     except:
         pass
-    # Construct Variable
+    # Manipulate Flags
+    if lineScript.startswith("@") and not lineScript.startswith("@flag"):
+        # @Input.set &math.add @Input, @Value;
+        Operation = lineScript.split(".", 1)
+        Operation[0] = Operation[0].replace("@", "", 1)
+        Operation[1] = Operation[1].split(" ", 1)
+
+        # Is Set?
+        if Operation[1][0] == "set":
+            Result = getBubble(Operation[1][1], attachedVariables)
+            # input(Result)
+
+            # Updates Flags
+            GlobalVariables[Operation[0]] = Result
+            attachedVariables[Operation[0]] = Result
+            # input(GlobalVariables)
+            # Update Flag (As Class)
+            try:
+                attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]] = Result
+                pass
+            except:
+                pass
+
+    # Math
+    if lineScript.startswith("math"):
+        # math.add <Bubble1>, <Bubble2>;
+        if lineScript.startswith("math.add "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
+            print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = int(MathValues[0]) + int(MathValues[1])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
     if lineScript.startswith("import "):
         modeLine = lineScript.split(" ")
         # First try to import with the modules folder
@@ -205,6 +246,7 @@ def runLine(lineScript, tempObject, attachedVariables):
         # Try to import from a file local to the python file
         except:
             runScript(open(f"{os.getcwd()}\\{modeLine[1]}.str", "r").read(), tempObject, attachedVariables)
+    # Construct Variable
     if lineScript.startswith("var "):
         # var TestVariable string Input: TestVariable1, Second: TestVariable2
         aboutToAdd = {
@@ -392,14 +434,25 @@ def runScript(script, tempObject, attachedVariables):
                     classTicker = 0 # Should be a value of 1 however it gets set to one in the linemode = class
                 else:
                     # See if line is a variable {Class}?
+                    # print("ATOTHEV", attachedVariables)
                     if aboutToRun[tick].split(".")[0] in attachedVariables:
                         TempLine = aboutToRun[tick].split(".")
                         TempLine[1] = TempLine[1].split(" ", 1)
                         # Get Class Type
                         ClassType = attachedVariables[TempLine[0]]["Type"]
-                        # Run Script
-                        attachment = attachedVariables[TempLine[0]]["Flags"]
-                        runScript(GlobalClasses[ClassType][TempLine[1][0]], tempObject, attachment)
+                        # Set up all the variables:
+                        try:addedVariables = grabValues(TempLine[1][1])
+                        except:addedVariables = {}
+                        # Run it as a script
+                        try: oldSelection = attachedVariables["$Selection"] 
+                        except: oldSelection = "None"
+                        attachedVariables.update({"$Selection": f"{aboutToRun[tick].split('.')[0]}"})
+                        handOffVariable = attachedVariables
+                        handOffVariable.update(attachedVariables[TempLine[0]]["Flags"])
+                        handOffVariable.update(addedVariables)
+                        # input(handOffVariable)
+                        # attachment = {}.update(attachedVariables[TempLine[0]]["Flags"].update(addedVariables))
+                        runScript(GlobalClasses[ClassType][TempLine[1][0]], tempObject, handOffVariable)#.update(addedVariables))
                     # See if the line is a class (Undefined Class)
                     if aboutToRun[tick].split(".")[0] in GlobalClasses:
                         # This means it's possible to run as a class!
