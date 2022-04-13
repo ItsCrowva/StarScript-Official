@@ -1,0 +1,47 @@
+{
+    "Features": {
+        "Threading": false,
+        "Changelog": "0.2.4:2",
+        "If/Else Statements": false,
+        "Variables": [
+            "PreVersionControl"
+        ],
+        "Loops": false,
+        "Arrays": false,
+        "Functions": false,
+        "Classes": [
+            "Pre-Building but Could Be Expanded Upon"
+        ],
+        "Inheritance": false,
+        "File IO": false,
+        "Debugging": false,
+        "Testing": false,
+        "Data Structures": false,
+        "Object Oriented Programming": false,
+        "Algorithms": false,
+        "StrScr Builds": false,
+        "GUI": false,
+        "Web Development": false,
+        "Mobile Development": false,
+        "Cloud Development": false,
+        "Robotics": false,
+        "Hardware": false,
+        "Embedded Systems": false
+    },
+    "0.2.4": {
+        "1": [
+            "- Moved __EVERYTHING__ into a repository folder"
+        ],
+        "2": {
+            "Build": "",
+            "Changelog": {
+                "Other": [
+                    "+ New Changelog File! This will hopefully make it easier to keep track of changes.",
+                    "+ Changelog.Strraw to keep track of all changes",
+                    "+ New StrRaw File Format concept",
+                    "* Added Comment to main.py to mention the new changelog json"
+                ]
+            }
+        }
+    }
+}

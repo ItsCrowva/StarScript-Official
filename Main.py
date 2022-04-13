@@ -117,6 +117,7 @@
 #                                   Cause i've just found out there is a threading feature in python.
 #
 #                                   I will now add threading to StarScript bc it was totally wanted.
+#   I've Moved a bunch of stuff from the main.py file to the new Changelog.json!
 
 
 #from compile import *

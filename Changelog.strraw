@@ -1,0 +1,8 @@
+-- Star Script Raw File (StrRaw)
+-- This is not supposed to be able to run code. Just offer code highlighting and text colors.
+
+
+
+b:0.2.4
+- Moved __EVERYTHING__ into a repository folder
++ New Changelog File! This will hopefully make it easier to keep track of changes.
