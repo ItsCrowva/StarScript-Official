@@ -4,6 +4,10 @@
     "tempValuesAreBinding": false,
     "runCommandLineWhenDone": true,
     "Install": "C:\\Users\\Andi\\Documents\\desktop\\starScript-0.2.3",
+    "ResponseInformation": {
+        "Show": true,
+        "ShowThread": true
+    },
     "alerts": {
         "Notice": false,
         "Extra": false,
@@ -14,7 +18,8 @@
         "Success": false,
         "AnnounceOutputs": false,
         "Comment": false,
-        "Debug": true
+        "Debug": true,
+        "Timing": true
     },
     "output": {
         "settingThatDoesNothing": true,

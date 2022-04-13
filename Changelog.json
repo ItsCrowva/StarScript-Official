@@ -33,13 +33,22 @@
             "- Moved __EVERYTHING__ into a repository folder"
         ],
         "2": {
-            "Build": "",
+            "Build": "13/04/22 - 5:03pm",
             "Changelog": {
                 "Other": [
                     "+ New Changelog File! This will hopefully make it easier to keep track of changes.",
                     "+ Changelog.Strraw to keep track of all changes",
-                    "+ New StrRaw File Format concept",
-                    "* Added Comment to main.py to mention the new changelog json"
+                    "+ New StrRaw File Format concept"
+                ],
+                "Main(Python)": [
+                    "* Added Comment to main.py to mention the new changelog json"]
+            }
+        },
+        "3": {
+            "Build": "",
+            "Changelog": {
+                "Other": [
+                    "* Added 0.2.4:2 in the Changelog.json file to split things into categories"
                 ]
             }
         }

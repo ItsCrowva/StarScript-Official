@@ -4,6 +4,7 @@ import json
 StarSettings = json.load(open("settings.json", "r"))
 # System Messages
 Notice =  "\033[96m[ Notic ]\033[0m - " # Letting the user know stuff
+Timing =  "\033[35m[ Timing ]\033[0m - " # Letting the user know stuff
 Extra =  "\033[96m[ Extra ]\033[0m - " # Spammy Stuff
 Debug =  "\033[35m[ Debug ]\033[0m - " # Assist with debugging
 Comment = "\033[32m[Comment]\033[0m - "
@@ -38,8 +39,11 @@ def bprint(Type, String1="", String2="", String3="", String4="", String5="", Str
     betterPrint(Type, String1, String2, String3, String4, String5, String6, String7, String8, String9, String10)
 
 # Better Print
-def betterPrint(Type, String1="", String2="", String3="", String4="", String5="", String6="", String7="", String8="", String9="", String10=""):
-    String = "{}{}{}{}{}{}{}{}{}{}".format(String1, String2, String3, String4, String5, String6, String7, String8, String9, String10)
+def betterPrint(Type, *args, Thread="Unset"):
+    try:
+        String = "".join(args)
+    except:
+        String = str(args)
     if StarSettings["alerts"]["Notice"] == True:
       if Type == "Notice":
         print(f"{Notice}{String}")
@@ -64,6 +68,9 @@ def betterPrint(Type, String1="", String2="", String3="", String4="", String5=""
     if StarSettings["alerts"]["Success"] == True:
         if Type == "Success":
             print(f"{Success}{String}")
+    if StarSettings["alerts"]["Timing"] == True:
+        if Type == "Timing":
+            print(f"{Timing}{String}")
     if StarSettings["alerts"]["Console"] == True:
         if Type == "Console":
             print(f"{Console}{String}")

@@ -437,4 +437,10 @@ GlobalVariables = {
 # Script Completed.
 # if StarSettings["runCommandLineWhenDone"] == True:
 while True:
-    runScript([input(f"{Console}Command:")], GlobalTD, GlobalVariables)
+    Command = input(f"{Console}Command:")
+    betterPrint("Timing", "Started Tracking Command: -[", Command, "]-")
+    start_time = time.perf_counter()
+    runScript([Command], GlobalTD, GlobalVariables)
+    end_time = time.perf_counter()
+    print(end_time)
+    betterPrint("Timing", f'It took {end_time - start_time: 0.2f} second(s) to complete.')

@@ -5,4 +5,7 @@
 
 b:0.2.4
 - Moved __EVERYTHING__ into a repository folder
-+ New Changelog File! This will hopefully make it easier to keep track of changes.
++ New Changelog.json File for easier change tracking
++ Changelog.strraw
++ New StrRaw file format concept
+* Added Comment in Main.py to mention the new json changelog

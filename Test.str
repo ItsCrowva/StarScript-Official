@@ -1,0 +1,95 @@
+import main
+-- import WindowExtension
+
+say Star Script 5 - Function Test
+
+
+
+say This is to test if running a script in different executers- gives the same result.\n
+/-
+    --This is a comment paragraph--
+
+    This is the feature test script.
+    This is used to align other systems to how this works
+-/
+$setred
+say First~ We present ourselves with some color tests.
+say This should be red.
+$clearcol
+say And~ back to white.
+
+
+say OK OK OK- Let's test whether or not multiple actions on a single line is possible.
+say Line1^*^say Line2^*^say Line3
+
+say And let's test if safekeeping is possible. You should see this sente\^*^nce completed on a singular output.
+
+say bouta make a class -[
+class string {
+    @flag Input: raw
+    @flag Second: raw
+
+        -- 30-03-22 - 12:29pm
+        -- 31-03-22 - 5:55pm - (Phased out Global)
+        -- 2-04-22 - 10:00pm - (Genuinely Making progress)
+    
+    say Here are the applied Values:
+    say @Input -- "Input" Variable
+    say @Second -- "Second" Variable
+
+    func value {
+        return @Input -- "@" means it's a flag to grab from
+    }
+    func test {
+        say This should be executable from anywhere
+        say @Input
+        -- "say <Variable>" directly grabs and prints the variable value from AttachedVariables. Not anywhere else.
+        -- say @Input
+        say @Second
+    }
+    say I am a string!
+}^*^say ]-
+
+var TestVariable string Input: please work, Second: please fucking work you whore;
+
+print value: TestVariable.value;
+say owo
+string.test Input: not needed, Second: TestVariable2;
+say uwu;
+
+say Now to play with the "string" class
+string.test Input: not needed, Second: TestVariable2;
+print value: (string.value Input: Test...), repeat: 4
+-- CMD Flag       Class Mention "()" SPLIT Flag  Value
+
+-- Test raising issues
+raise error: This isn't a real issue. Just an example!
+raise warning: Fake Warning
+var TestVariableTwo string Input: AAAAAAAaa, Second: BITCH IT WORKS;
+TestVariable.test
+TestVariableTwo.test
+
+say Window Test Time!
+class Window {
+    @flag Name: raw
+    @flag Title: raw = Unnamed Window
+    @flag Size: raw = 600x600
+    @flag Background: raw = black
+    @flag Description: raw = This Description has not been set
+
+    say Hello from the Window Variable!
+
+    makeWindow Name: @Name, Title: @Title, Size: @Size
+    func test {
+        say no bitch
+    }
+    say Initialised
+}
+
+class blank { -- This is supposed to showcase the compiler warning the user of a blank class
+}
+
+say Making Window:
+var AppFile Window Name: AppFile, Title: Test, Size: 300x700;
+
+-- say #TestInput
