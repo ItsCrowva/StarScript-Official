@@ -118,13 +118,14 @@
 #
 #                                   I will now add threading to StarScript bc it was totally wanted.
 #   I've Moved a bunch of stuff from the main.py file to the new Changelog.json!
-#   6:48pm until 
+#   6:48pm until 7:11pm (13-04-22) - Returns are now working!!! the say command accepts return statements
 
 
 #from compile import *
 # Run If Main
 
 from Core import *
+import Core
 from RunLine import *
 from ast import Dict, Global
 from tempfile import TemporaryDirectory
@@ -165,7 +166,18 @@ from unicodedata import name
 # 
 #       With this i'll also be working on various different executers on the side- just to get this looking perfect.
 
+GlobalTD = {
+    "Test": "Hello!"
+}
 
+Modules = {
+    "Main": {
+        "Enabled": True
+    },
+    "WindowExtension": {
+        "Enabled": True
+    }
+}
 
 # TODO:
 #   #- Flags in classes (Done)
@@ -225,19 +237,26 @@ def runLine(lineScript, tempObject, attachedVariables):
         # return TestVariable1, Second: TestVariable2
         # ReturnV = grabValues(lineScript.split(" ", 1)[1])
         # print(ReturnV)
-        ReturnV = getBubble(lineScript.split(" ", 1)[1], attachedVariables)
+        ReturnV = Core.getBubble(lineScript.split(" ", 1)[1], attachedVariables)
         # input(f"wait for it: {ReturnV}")
-        betterPrint("Notice", "Returning:", ReturnV)
+        Core.betterPrint("Notice", "Returning:", ReturnV)
         tempObject.update({"return": ReturnV})
+        print("RETURNED:", tempObject)
         # tempObject = {"return": "blank"}
         # input(tempObject)
         # input(tempObject)
-        try:
-            if tempObject["SpecialFlag"] == "SentFromCore":
+        # try:
+            # if tempObject["SpecialFlag"] == "SentFromCore":
+
+            # We're gonna dangerously assume that a direct-return means the script is DEFINITELY ran from a module.
+            # This'll backfire later but whatever.
+        print(__name__)
+        Core.setVreturn(tempObject["return"])
+        if not __name__ == "__main__":
                 # input("-----")
                 return tempObject["return"]
-        except:
-            return tempObject, attachedVariables
+        else:
+                return tempObject, attachedVariables
       except:
           input("Error: Fatal error with the return statement")
     # Direct System Calls

@@ -9,7 +9,7 @@
         "ShowThread": true
     },
     "alerts": {
-        "Notice": false,
+        "Notice": true,
         "Extra": false,
         "Warning": true,
         "Alert": true,

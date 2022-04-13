@@ -22,17 +22,8 @@ if StarSettings["alerts"]["AnnounceOutputs"] == True:
 ErrorReturn = f"{Alert} - We were unable to complete this request." # The string that the system feeds back
 
 # Storage
-GlobalTD = {
-    "Test": "Hello!"
-}
-Modules = {
-    "Main": {
-        "Enabled": True
-    },
-    "WindowExtension": {
-        "Enabled": True
-    }
-}
+
+
 GlobalClasses = {}
 GlobalVariables = {
     "ExampleTextVariable": "I hold an example value :P",
@@ -140,6 +131,13 @@ def grabValues(Input):
         print(f"{Notice}---done---", currentSetup)
     return currentSetup
 
+# Incredibly Stupid Idea
+Vreturn = ""
+def setVreturn(Input):
+    global Vreturn
+    Vreturn = Input
+
+
 def getBubble(bubble, attachedVariables):
     # Get Bubble
     # Check if Flag
@@ -148,20 +146,23 @@ def getBubble(bubble, attachedVariables):
     # # = Input
     # & = Run As Command then Use Return Value
     # Blank = Raw
+    bubble = bubble.split("-- ")[0].strip()
     if bubble.startswith("&"):
         bubble = bubble.replace("&", "", 1)
-        print("bubble:", bubble)
+        # print("bubble:", bubble)
         # TemporaryObject = {
         #     "return": "none?"
         # }
-        TemporaryObject, Test = Main.runLine(bubble, {
+        TemporaryObject = Main.runLine(bubble, {
             "SpecialFlag": "SentFromCore"
         }, attachedVariables)
-        print(TemporaryObject, Test)
-        return "ReturnFunctionWillBeAddedNextUpdate"#TemporaryObject["return"]
+        # print(Vreturn)
+        # print(TemporaryObject)
+        return Vreturn
     if bubble.startswith("@"):
         bubble = bubble.replace("@", "", 1)
         try:
+            print("AttachedVariables:", attachedVariables, "bubble", bubble)
             return attachedVariables[bubble]
         except:
             print(f"{Error}Flag Bubble: ({bubble}) not found!!")
