@@ -36,7 +36,7 @@ if Client == "3":
 
 print("Where shall we install StarScript?")
 print("You need to input the directory location. Here we have some examples:")
-print("Example: C:\\Program Files\\StarScript")
+# print("Example: C:\\Program Files\\StarScript")
 print("Example: C:\\StarScript")
 print("Example: /home/user/StarScript")
 InstallLocation = input("Directory:")
@@ -48,7 +48,11 @@ if os.path.exists(InstallLocation):
     print(f"{Success}      - Directory exists")
 else:
     print(f"{Error}      - Directory Doesn't Exist, Creating Now")
-    os.mkdir(InstallLocation)
+    try:
+        os.mkdir(InstallLocation)
+    except:
+        input("Access Denied Error, Press Enter to exit")
+        exit()
     print(f"{Success}      - Directory Made")
 
 print(f"{Clear}10 % - Copying Core Components to the new Folder")
@@ -58,6 +62,8 @@ try:
     shutil.copytree("Core", f"{InstallLocation}/Core")
 except:
     print(f"{Success}      - Core Folder Already Exists")
+    shutil.rmtree(f"{InstallLocation}/Core")
+    shutil.copytree("Core", f"{InstallLocation}/Core")
 
 
 print(f"{Clear}20 % - Copying Core Scripts to the new Folder")
@@ -141,4 +147,4 @@ if Mode == 3:
         "Timing": True
     }
 
-json.dump(open(f"{InstallLocation}/Core/Settings.json", "w"), Settings, indent=4)
+# json.dump(open(f"{InstallLocation}/Core/Settings.json", "w"), Settings, indent=4, sort_keys=True)

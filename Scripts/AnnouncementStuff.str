@@ -1,0 +1,23 @@
+say hello child.
+-- Output: hello child
+
+say &return hello child
+-- Output: hello child
+
+say #Say "hello child" for free robux
+-- User sends "hello child" and this tutorial becomes not-Background
+
+
+say Apple
+
+class Human {
+    @flag Name: raw
+
+    func speak {
+        say I haven't been fed in days
+    }
+}
+
+var Jerry Human Name: Jerry;
+
+Jerry.speak

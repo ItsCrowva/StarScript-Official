@@ -81,3 +81,18 @@ b:0.2.4
 
     0.2.4:9 - 14-04-22 - 10:51am
 + settings.json is now setup in the installation.
+
+    0.2.4:10 - 14-04-22 - 2:10pm
++ math module!?
++ added math.cos <bubble>; as an internal guide >x<
++ math.cos
++ math.tan
++ math.sin
++ thread<wait>
++ delay
++ Added some more example scripts
+ALSO- We're releasing StrScr on this build!
+#Excitement
+
+only been like 7 months of rewrites and developments...
+~~and only been 2 months since i said i'd release~~

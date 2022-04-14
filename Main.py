@@ -120,11 +120,14 @@
 #   I've Moved a bunch of stuff from the main.py file to the new Changelog.json!
 #   6:48pm until 7:11pm (13-04-22) - Returns are now working!!! the say command accepts return statements
 #   7:40pm until 10:18pm (13-04-22) - MAJOR MAJOR MAJOR PROGRESS :P. Math & Variable Interaction!
+#   9:00am until 12:30pm (14-04-22) - More math stuff and a bunch of wonderful stuff, gearing up for the RELEASE OF OPEN ALPHA (Such as an installation file)
 
 
 #from compile import *
 # Run If Main
 
+from cmath import cos, sin, tan
+from mailbox import linesep
 from Core import *
 import Core
 from RunLine import *
@@ -224,10 +227,11 @@ def runLine(lineScript, tempObject, attachedVariables):
                 pass
             except:
                 pass
-
     # Math
     if lineScript.startswith("math"):
         # math.add <Bubble1>, <Bubble2>;
+        # math.cos <Bubble1>;
+        
         if lineScript.startswith("math.add "):
             # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
             Table = lineScript.split(" ", 1)[1]
@@ -284,6 +288,51 @@ def runLine(lineScript, tempObject, attachedVariables):
             Core.betterPrint("Notice", "Returning:", ReturnV)
             Core.setVreturn(ReturnV)
             tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.cos "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = cos(MathValues[0])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.tan "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = tan(MathValues[0])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.sin "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = sin(MathValues[0])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+    if lineScript == "thread<wait>":
+        for t in Threads:
+            t.join()
     if lineScript.startswith("import "):
         modeLine = lineScript.split(" ")
         # First try to import with the modules folder
@@ -292,6 +341,14 @@ def runLine(lineScript, tempObject, attachedVariables):
         # Try to import from a file local to the python file
         except:
             runScript(open(f"{os.getcwd()}\\{modeLine[1]}.str", "r").read(), tempObject, attachedVariables)
+    # Delay Script for x amount of time
+    if lineScript.startswith("delay "):
+        # Grab the delay time
+        delayTime = lineScript.split(" ", 1)[1]
+        # Convert to int
+        delayTime = int(delayTime)
+        # Delay the script
+        time.sleep(delayTime)
     # Construct Variable
     if lineScript.startswith("var "):
         # var TestVariable string Input: TestVariable1, Second: TestVariable2

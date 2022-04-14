@@ -1,0 +1,30 @@
+class tick {
+    @flag Input: raw
+
+    func value {
+        return @Input-- "@" means its a flag to grab from
+    }
+    func add {
+        @flag Value: raw
+        delay 1
+        @Input.set &math.add @Input, @Value
+    }
+}
+
+var Main tick Input: 1;
+
+Main.value
+
+say v-----------v
+say &Main.value
+say ^-----------^
+
+say -< Start Test: >-
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+say &Main.value
+say -< End Test: >-
