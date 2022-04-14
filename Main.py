@@ -228,108 +228,74 @@ def runLine(lineScript, tempObject, attachedVariables):
             except:
                 pass
     # Math
+    def processArithmetic(operator: str) -> None:
+        nonlocal tempObject
+
+        # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+        Table = lineScript.split(" ", 1)[1]
+        Table = Table.split(", ")
+        try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
+        except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
+        # print("MathValues", MathValues)
+        # Set the Return Value
+        if operator == "+":
+            ReturnV = int(MathValues[0]) + int(MathValues[1])
+        elif operator == "-":
+            ReturnV = int(MathValues[0]) - int(MathValues[1])
+        elif operator == "/":
+            ReturnV = int(MathValues[0]) / int(MathValues[1])
+        elif operator == "*":
+            ReturnV = int(MathValues[0]) * int(MathValues[1])
+        else:
+            raise ValueError("Invalid operator for arithmetic processing!")
+
+        # Return
+        Core.betterPrint("Notice", "Returning:", ReturnV)
+        Core.setVreturn(ReturnV)
+        tempObject.update({"return": ReturnV})
+
+    def processTrigonometric(operator: str) -> None:
+        nonlocal tempObject
+
+        # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+        Table = lineScript.split(" ", 1)[1]
+        Table = Table.split(", ")
+        try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
+        except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
+        # print("MathValues", MathValues)
+        # Set the Return Value
+        if operator == "cos":
+            ReturnV = cos(MathValues[0])
+        elif operator == "tan":
+            ReturnV = tan(MathValues[0])
+        elif operator == "sin":
+            ReturnV = sin(MathValues[0])
+        else:
+            raise ValueError("Invalid operator for arithmetic processing!")
+
+        # Return
+        Core.betterPrint("Notice", "Returning:", ReturnV)
+        Core.setVreturn(ReturnV)
+        tempObject.update({"return": ReturnV})
+
     if lineScript.startswith("math"):
         # math.add <Bubble1>, <Bubble2>;
         # math.cos <Bubble1>;
         
         if lineScript.startswith("math.add "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = int(MathValues[0]) + int(MathValues[1])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processArithmetic("+")
         if lineScript.startswith("math.sub "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = int(MathValues[0]) - int(MathValues[1])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processArithmetic("-")
         if lineScript.startswith("math.div "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = int(MathValues[0]) / int(MathValues[1])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processArithmetic("/")
         if lineScript.startswith("math.mul "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = int(MathValues[0]) * int(MathValues[1])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processArithmetic("*")
         if lineScript.startswith("math.cos "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = cos(MathValues[0])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processTrigonometric("cos")
         if lineScript.startswith("math.tan "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = tan(MathValues[0])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processTrigonometric("tan")
         if lineScript.startswith("math.sin "):
-            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
-            Table = lineScript.split(" ", 1)[1]
-            Table = Table.split(", ")
-            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip()]
-            except:MathValues = [Core.getBubble(Table[0], attachedVariables)]
-            # print("MathValues", MathValues)
-            # Set the Return Value
-            ReturnV = sin(MathValues[0])
-
-            # Return
-            Core.betterPrint("Notice", "Returning:", ReturnV)
-            Core.setVreturn(ReturnV)
-            tempObject.update({"return": ReturnV})
+            processTrigonometric("sin")
     if lineScript == "thread<wait>":
         for t in Threads:
             t.join()
