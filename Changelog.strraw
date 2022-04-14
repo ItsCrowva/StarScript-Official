@@ -78,3 +78,6 @@ b:0.2.4
 * settings.json now in the Core folder
 * runLine no longer references Core & windowExtension
 - windowExtension no longer imports graphics.py
+
+    0.2.4:9 - 14-04-22 - 10:51am
++ settings.json is now setup in the installation.

@@ -7,6 +7,10 @@
 
 import os
 import shutil
+import json
+from tkinter.tix import Tree
+
+from setuptools import find_packages
 
 Success = "\033[92m"
 Error = "\033[91m"
@@ -73,3 +77,68 @@ except:print(f"{Success}      - WindowExtension.py Already Exists")
 print(f"{Clear}30 % - Copying Example Scripts")
 try:shutil.copytree("Scripts", f"{InstallLocation}/Scripts")
 except:print(f"{Success}      - Scripts Folder Already Exists")
+
+print(f"{Clear}40 % - Setting Up Settings.json")
+
+Settings = json.load(open(f"{InstallLocation}/Core/Settings.json", "r"))
+
+Settings["Install"] = InstallLocation
+Settings["Client"] = Client
+Settings["quickInfo"] = "Initialised with the installer.py"
+
+print("Now! Let's discuss preferences!")
+print("Console Alerts can get pretty spammy. As such there are many options")
+print("Alert Options:")
+print(f"""What's your intention with this installation of StarScript?
+{Success}1. To Run Third Party Code {Clear}- This one isn't spammy and is recommended.
+{Warning}2. To Write Code as a Beginner {Clear}- Very Basic Error Messages, Sorta Spammy
+{Notice}3. To Write Code & Fully Debug Code {Clear}- All Error Messages, Very Spammy, Slows down code a bit
+{Debug}4. I'll choose options later, Thank you! {Clear}- Installation doesn't change the settings.json file. You, yourself may edit it at a later time.""")
+Mode = input("Option?:")
+
+if Mode == 1:
+    Settings["alerts"] = {
+        "Notice": False,
+        "Extra": False,
+        "Warning": False,
+        "Alert": False,
+        "Error": False,
+        "Console": False,
+        "Success": False,
+        "AnnounceOutputs": False,
+        "Comment": False,
+        "Debug": False,
+        "Timing": True
+    }
+
+if Mode == 2:
+    Settings["alerts"] = {
+        "Notice": False,
+        "Extra": False,
+        "Warning": True,
+        "Alert": True,
+        "Error": True,
+        "Console": False,
+        "Success": False,
+        "AnnounceOutputs": False,
+        "Comment": True,
+        "Debug": True,
+        "Timing": True
+    }
+
+if Mode == 3:
+    Settings["alerts"] = {
+        "Notice": True,
+        "Extra": False,
+        "Warning": True,
+        "Alert": True,
+        "Error": True,
+        "Console": False,
+        "Success": True,
+        "AnnounceOutputs": True,
+        "Comment": True,
+        "Debug": True,
+        "Timing": True
+    }
+
+json.dump(open(f"{InstallLocation}/Core/Settings.json", "w"), Settings, indent=4)
