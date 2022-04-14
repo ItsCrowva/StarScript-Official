@@ -113,3 +113,13 @@ only been like 7 months of rewrites and developments...
 + 6 new files for testing file opens
 + os.readfilelines command in main.py [broken]
 + openafile.str to test stuff
+
+    0.2.5:4 - 14-04-22 - 10:13pm
++ @flag.append [Broken]
+^ Flag.append needs to be reworked. Trying to convert a raw (string) to a list temporarily each time- just won't work.
+* Changed all the "read()"s in the import command to say readlines()
++ Script now checks for a modules folder in the directory of the python file.
+* Default Value for non-preset flags is now "Default.Value" rather than "None
++ BloomUI.str (This will be a potential UI Module for working with Websites & Windows)
++ Visuals.str (To help build up BloomUI & the WindowExtension.py file)
+* completely refactored the windowextension.py file

@@ -123,13 +123,16 @@
 #   9:00am until 12:30pm (14-04-22) - More math stuff and a bunch of wonderful stuff, gearing up for the RELEASE OF OPEN ALPHA (Such as an installation file)
 
 # 0.2.5
-#   3:39pm until 4:51pm
+#   14-04-22
+#       3:39pm until 4:51pm
+#       7:13pm until 9:01pm
 
 #from compile import *
 # Run If Main
 
 from cmath import cos, sin, tan
 from mailbox import linesep
+from typing import List
 from Core import *
 import Core
 from RunLine import *
@@ -206,29 +209,31 @@ def runLine(lineScript, tempObject, attachedVariables):
         tempObject["LinesRan"] += 1
     except:
         pass
-
+    
     # Manipulate Flags
     if lineScript.startswith("@") and not lineScript.startswith("@flag"):
         # @Input.set &math.add @Input, @Value;
+        # @Flag.append uwu
         Operation = lineScript.split(".", 1)
         Operation[0] = Operation[0].replace("@", "", 1)
         Operation[1] = Operation[1].split(" ", 1)
 
+        Result = getBubble(Operation[1][1], attachedVariables)
+        GlobalVariables[Operation[0]] = Result
+        attachedVariables[Operation[0]] = Result
+
         # Is Set?
         if Operation[1][0] == "set":
-            Result = getBubble(Operation[1][1], attachedVariables)
-            # input(Result)
-
-            # Updates Flags
-            GlobalVariables[Operation[0]] = Result
-            attachedVariables[Operation[0]] = Result
-            # input(GlobalVariables)
-            # Update Flag (As Class)
             try:
                 attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]] = Result
                 pass
             except:
                 pass
+        if Operation[1][0] == "append":
+            Child = list(attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
+            print(attachedVariables)
+            print("NON LIST", attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
+            print("List Edition of String =", Child)
     # OS
     if lineScript.startswith("os"):
         if lineScript.startswith("os.readfilelines "):
@@ -362,10 +367,13 @@ def runLine(lineScript, tempObject, attachedVariables):
         modeLine = lineScript.split(" ")
         # First try to import with the modules folder
         try:
-            runScript(open(f"{StarSettings['Install']}\\Modules\\{modeLine[1]}.str", "r").read(), tempObject, attachedVariables)
+            runScript(open(f"{StarSettings['Install']}\\Modules\\{modeLine[1]}.str", "r").readlines(), tempObject, attachedVariables)
         # Try to import from a file local to the python file
         except:
-            runScript(open(f"{os.getcwd()}\\{modeLine[1]}.str", "r").read(), tempObject, attachedVariables)
+            try:
+                runScript(open(f"{os.getcwd()}\\{modeLine[1]}.str", "r").readlines(), tempObject, attachedVariables)
+            except:
+                runScript(open(f"{os.getcwd()}\\Modules\\{modeLine[1]}.str", "r").readlines(), tempObject, attachedVariables)
     # Delay Script for x amount of time
     if lineScript.startswith("delay "):
         # Grab the delay time
@@ -502,7 +510,7 @@ def runLine(lineScript, tempObject, attachedVariables):
         bprint("Debug", f"Heya! strlng5(2ndEdition) no longer uses the print function. print <Variable Mention>/<Bubble> is a very old command and doesn't work especially since bubbles aren't a thing in this language anymore. Please use `say`. To print raw text: say <Text>. To print a flag/DirectFlagVariable: say @<Variable>")
 
     # Try Running Line from another File
-    if Modules["WindowExtension"]["Enabled"] == True: windowExtensionRunLine(lineScript, tempObject, attachedVariables)
+    if Modules["WindowExtension"]["Enabled"] == True: WErunLine(lineScript, tempObject, attachedVariables)
 
     return tempObject, attachedVariables
 
@@ -648,7 +656,7 @@ def runScript(script, tempObject, attachedVariables):
                 
                 if aboutToRun[tick].startswith("@flag "):
                     temp = aboutToRun[tick].split(" ")[1].replace(":", "")
-                    Ven = "None" # Default Value
+                    Ven = "Default.Value" # Default Value
                     if "=" in temp:
                         # A default value has been detected;
                         Ven = temp.split(" = ", 1)[1] # The Default Value

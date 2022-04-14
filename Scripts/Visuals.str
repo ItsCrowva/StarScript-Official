@@ -1,0 +1,9 @@
+-- idc whether this ends up as a website or whatever
+-- as long as it works
+import BloomUI
+
+var Main Window WindowName: StarScript;
+
+Main.Text Text: what
+Main.Text Text: hi
+Main.build
