@@ -162,7 +162,7 @@ def getBubble(bubble, attachedVariables):
     if bubble.startswith("@"):
         bubble = bubble.replace("@", "", 1)
         try:
-            print("AttachedVariables:", attachedVariables, "bubble", bubble)
+            # print("AttachedVariables:", attachedVariables, "bubble", bubble)
             return attachedVariables[bubble]
         except:
             print(f"{Error}Flag Bubble: ({bubble}) not found!!")

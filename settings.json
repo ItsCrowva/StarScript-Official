@@ -3,22 +3,22 @@
     "errorsCrashProgram": true,
     "tempValuesAreBinding": false,
     "runCommandLineWhenDone": true,
-    "Install": "C:\\Users\\Andi\\Documents\\desktop\\starScript-0.2.3",
+    "Install": "C:\\Users\\Andi\\Documents\\desktop\\StarScriptOfficial\\StarScript-Official",
     "ResponseInformation": {
         "Show": true,
         "ShowThread": true
     },
     "alerts": {
-        "Notice": true,
+        "Notice": false,
         "Extra": false,
-        "Warning": true,
-        "Alert": true,
-        "Error": true,
-        "Console": true,
+        "Warning": false,
+        "Alert": false,
+        "Error": false,
+        "Console": false,
         "Success": false,
         "AnnounceOutputs": false,
         "Comment": false,
-        "Debug": true,
+        "Debug": false,
         "Timing": true
     },
     "output": {

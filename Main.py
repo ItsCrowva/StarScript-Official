@@ -91,7 +91,7 @@
 #   - 3:30pm (26-03-22) until 5:14pm (26-03-22)
 #   - 6:42pm until 6:50pm (26-03-22)
 #   - 2:28pm (27-03-22) until 3:54pm
-#   - 12:01pm (30-03-22) until
+#   - 12:01pm (30-03-22) until ----
 
 
 # 0.2.0
@@ -119,7 +119,7 @@
 #                                   I will now add threading to StarScript bc it was totally wanted.
 #   I've Moved a bunch of stuff from the main.py file to the new Changelog.json!
 #   6:48pm until 7:11pm (13-04-22) - Returns are now working!!! the say command accepts return statements
-#   7:40pm until 
+#   7:40pm until 10:18pm (13-04-22) - MAJOR MAJOR MAJOR PROGRESS :P. Math & Variable Interaction!
 
 
 #from compile import *
@@ -167,6 +167,8 @@ from unicodedata import name
 # 
 #       With this i'll also be working on various different executers on the side- just to get this looking perfect.
 
+# Threads & Stuff
+Threads = []
 
 GlobalTD = {
     "Test": "Hello!"
@@ -191,6 +193,7 @@ def runLine(lineScript, tempObject, attachedVariables):
     global GoTicker # Super Useless. Just- Variables before Variables are good
     global GlobalVariables
     global Modules
+    global Threads
     # print(tempObject)
     # lineScript = Line to run
     # tempObject = FormerOtherdata
@@ -198,6 +201,7 @@ def runLine(lineScript, tempObject, attachedVariables):
         tempObject["LinesRan"] += 1
     except:
         pass
+
     # Manipulate Flags
     if lineScript.startswith("@") and not lineScript.startswith("@flag"):
         # @Input.set &math.add @Input, @Value;
@@ -230,9 +234,51 @@ def runLine(lineScript, tempObject, attachedVariables):
             Table = Table.split(", ")
             try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
             except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
-            print("MathValues", MathValues)
+            # print("MathValues", MathValues)
             # Set the Return Value
             ReturnV = int(MathValues[0]) + int(MathValues[1])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.sub "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = int(MathValues[0]) - int(MathValues[1])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.div "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = int(MathValues[0]) / int(MathValues[1])
+
+            # Return
+            Core.betterPrint("Notice", "Returning:", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
+        if lineScript.startswith("math.mul "):
+            # MathValues = Core.grabValues(lineScript.split(" ", 1)[1])
+            Table = lineScript.split(" ", 1)[1]
+            Table = Table.split(", ")
+            try:MathValues = [Core.getBubble(Table[0], attachedVariables).strip(), Core.getBubble(Table[1], attachedVariables).strip()]
+            except:MathValues = [Core.getBubble(Table[0], attachedVariables), Core.getBubble(Table[1], attachedVariables)]
+            # print("MathValues", MathValues)
+            # Set the Return Value
+            ReturnV = int(MathValues[0]) * int(MathValues[1])
 
             # Return
             Core.betterPrint("Notice", "Returning:", ReturnV)
@@ -381,6 +427,7 @@ def runLine(lineScript, tempObject, attachedVariables):
 
 def runScript(script, tempObject, attachedVariables):
     global GlobalClasses
+    global Threads
     # script = script.replace("^*^", "\n")
     tempPointer = 0
     # print(script)
@@ -435,7 +482,17 @@ def runScript(script, tempObject, attachedVariables):
                 else:
                     # See if line is a variable {Class}?
                     # print("ATOTHEV", attachedVariables)
+
+                    # Check/Prepare as Thread
+                    if aboutToRun[tick].startswith("thread<+>"):
+                        ThreadMode = True
+                        aboutToRun[tick] = aboutToRun[tick].replace("thread<+>", "", 1)
+                    else:
+                        ThreadMode = False
+
                     if aboutToRun[tick].split(".")[0] in attachedVariables:
+                        # Main.value
+                        # Main.add Value: 2;
                         TempLine = aboutToRun[tick].split(".")
                         TempLine[1] = TempLine[1].split(" ", 1)
                         # Get Class Type
@@ -452,7 +509,12 @@ def runScript(script, tempObject, attachedVariables):
                         handOffVariable.update(addedVariables)
                         # input(handOffVariable)
                         # attachment = {}.update(attachedVariables[TempLine[0]]["Flags"].update(addedVariables))
-                        runScript(GlobalClasses[ClassType][TempLine[1][0]], tempObject, handOffVariable)#.update(addedVariables))
+                        if ThreadMode == True:
+                            # Run As Thread
+                            Threads.append(threading.Thread(target=runScript, args=(GlobalClasses[ClassType][TempLine[1][0]], tempObject, handOffVariable)))
+                            Threads[-1].start()
+                        else:
+                            runScript(GlobalClasses[ClassType][TempLine[1][0]], tempObject, handOffVariable)#.update(addedVariables))
                     # See if the line is a class (Undefined Class)
                     if aboutToRun[tick].split(".")[0] in GlobalClasses:
                         # This means it's possible to run as a class!
@@ -465,9 +527,21 @@ def runScript(script, tempObject, attachedVariables):
                         handOffVariable = attachedVariables
                         handOffVariable.update(addedVariables)
                         print(handOffVariable)
-                        runScript(GlobalClasses[TempLine[0]][TempLine[1][0]], tempObject, handOffVariable)
-                    # run the line as a standard line
-                    tempObject, attachedVariables = runLine((aboutToRun[tick].replace("\n", "")).replace("\\n", "\n"), tempObject, attachedVariables)
+                        if ThreadMode == True:
+                            Threads.append(threading.Thread(target=runScript, args=(GlobalClasses[TempLine[0]][TempLine[1][0]], tempObject, handOffVariable)))
+                            Threads[-1].start()
+                        else:
+                            runScript(GlobalClasses[TempLine[0]][TempLine[1][0]], tempObject, handOffVariable)
+                        pass
+                        # Run As Thread or
+                    if ThreadMode == True:
+                        # aboutToRun[tick] = aboutToRun[tick][8:]
+                        Threads.append(threading.Thread(target=runLine, args=(aboutToRun[tick], tempObject, attachedVariables)))
+                        Threads[-1].start()
+                        # return tempObject, attachedVariables
+                    else:
+                        # Run as Line
+                        tempObject, attachedVariables = runLine((aboutToRun[tick].replace("\n", "")).replace("\\n", "\n"), tempObject, attachedVariables)
             if lineMode == "Class":
                 # Construct a class object to send directly to the makeClass function
                 if "{" in aboutToRun[tick]:

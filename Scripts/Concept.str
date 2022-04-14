@@ -1,0 +1,216 @@
+class tick {
+    @flag Input: raw
+
+    func value {
+        return @Input-- "@" means it's a flag to grab from
+    }
+    func add {
+        -- say @Input
+        @flag Value: raw
+        @Input.set &math.add @Input, @Value
+        -- say @Input
+    }
+}
+
+var Main tick Input: 1;
+
+Main.value
+
+say v-----------v
+say &Main.value
+say ^-----------^
+
+
+say -< Running Test: >-
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;
+thread<+>Main.add Value: 1;
+thread<+>Main.add Value: 2;
+thread<+>Main.add Value: 3;
+thread<+>Main.add Value: 4;
+thread<+>Main.add Value: 5;
+thread<+>Main.add Value: 6;

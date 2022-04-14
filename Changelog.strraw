@@ -4,7 +4,7 @@
 
 
 b:0.2.4
-    0.2.4:!
+    0.2.4:1
 - Moved __EVERYTHING__ into a repository folder
 
     0.2.4:2 - 13/04/22 - 5:03pm
@@ -46,3 +46,10 @@ b:0.2.4
 * references to core.py in the return statement now directly start with "Core."
 * Return Statement now sends the return function by directly changing "vReturn" in Core.py
 * Made some appends to PerformanceTest.str
+
+    0.2.4:6 - 13-04-22 - 9:41pm
++ math.add statement. Provide two bubbles, the code will add them together & put them as a return!
++ @<flagname>.set <bubble> - Set a flag (Whether it be a currently active one or a class value, to <bubbles> value!
+* Redid the run as class section. Now you can attach flags to an already existing class! (Just not easily attach them :Sweat:)
+* PerformanceTest.str now works! 1,500 lines of just adding 1 to the Main Variable (Using Tick Class)
+     ^ This does things because StarScript sends the time the code took, after!
