@@ -3,7 +3,8 @@
     "errorsCrashProgram": true,
     "tempValuesAreBinding": false,
     "runCommandLineWhenDone": true,
-    "Install": "C:\\Users\\Andi\\Documents\\desktop\\StarScriptOfficial\\StarScript-Official",
+    "Install": "-ModerateThis-",
+    "Client": "Github",
     "ResponseInformation": {
         "Show": true,
         "ShowThread": true
