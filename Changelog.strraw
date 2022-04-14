@@ -123,3 +123,7 @@ only been like 7 months of rewrites and developments...
 + BloomUI.str (This will be a potential UI Module for working with Websites & Windows)
 + Visuals.str (To help build up BloomUI & the WindowExtension.py file)
 * completely refactored the windowextension.py file
+
+Build 4.1:
+* 0.2.4 had an update so;
+    + the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)

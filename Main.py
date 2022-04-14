@@ -621,11 +621,12 @@ def runScript(script, tempObject, attachedVariables):
                     holdingClass[nameMode].append(aboutToRun[tick])
                 
                 if aboutToRun[tick].startswith("@flag "):
-                    temp = aboutToRun[tick].split(" ")[1].replace(":", "")
+                    temp = aboutToRun[tick].split(" ", 1)[1].replace(":", "")
                     Ven = "Default.Value" # Default Value
                     if "=" in temp:
                         # A default value has been detected;
                         Ven = temp.split(" = ", 1)[1] # The Default Value
+                        input("Ven: " + Ven)
 
                     holdingClass["TagsToFill"].update({
                         str(temp): Ven

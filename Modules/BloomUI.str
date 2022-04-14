@@ -4,7 +4,7 @@ say BloomUI has been initialised
 
 class Window {
     @flag WindowName: raw = "Unset Window"
-    @flag Window: raw = []
+    @flag Window: list = []
 
     func build {
         say Building Window Now!
