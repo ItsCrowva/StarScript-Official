@@ -101,3 +101,10 @@ only been like 7 months of rewrites and developments...
     0.2.5:1 - 14-04-22 - 2:50pm
 + started new beta branch!?
 + added version entry to settings
+
+    0.2.5:2 - 14-04-22 - 3:17pm
++ Added a .strraw reading command.
+    ^ strraw say <strraw>
+    ^ strraw open <filelocation>
++ Added a [Clear] Text option.
++ openStrRaw function now in Core.py

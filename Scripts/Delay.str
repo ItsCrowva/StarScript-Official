@@ -11,6 +11,15 @@ class tick {
     }
 }
 
+class Human {
+    @flag Name: raw
+    @flag Age: raw
+    
+    func Speak {
+        say I've been trapped without food for 17 days.
+    }
+}
+
 var Main tick Input: 1;
 
 Main.value

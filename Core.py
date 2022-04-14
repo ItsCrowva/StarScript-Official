@@ -15,6 +15,7 @@ Alert =   "\033[91m[ Alert ]\033[0m - " # Something is probably gonna go wrong
 Error =   "\033[91m\033[1m[ Error ]\033[0m - " # Somethig is really wrong
 Success = "\033[92m[ Succe ]\033[0m - " # Very Spammy Success Message
 Console = "\033[90m[Console]\033[0m - " # Console Stuff
+Clear = "\033[0m"
 AnnounceOutputs = ""
 if StarSettings["alerts"]["AnnounceOutputs"] == True:
     AnnounceOutputs = "\033[95m[ Outpu ]\033[0m - "
@@ -36,6 +37,32 @@ GlobalVariables = {
         }
     }
 }
+
+def openStrRaw(File):
+    for x in File:
+        # print(File, x)
+        Line = x
+
+        # Remove New Lines
+        Line = Line.replace("\n", "")
+
+        # Add Color
+        if "--" in Line:
+            Line = Line.split("--")
+
+            Line[1] = f"\033[32m--{Line[1]}"
+
+            Line = "".join(Line) + "\033[0m"
+        
+        if Line.startswith("+"):
+            Line = Line.replace("+", f"\033[92m+")
+        if Line.startswith("-"):
+            Line = Line.replace("-", f"\033[91m-")
+        if Line.startswith("*"):
+            Line = Line.replace("*", f"\033[93m*")
+
+        Line = Line + "\033[0m"
+        print(Line)
 
 # Better Print Bridge
 def bprint(Type, String1="", String2="", String3="", String4="", String5="", String6="", String7="", String8="", String9="", String10=""):

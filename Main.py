@@ -227,6 +227,16 @@ def runLine(lineScript, tempObject, attachedVariables):
                 pass
             except:
                 pass
+    # Strraw
+    if lineScript.startswith("strraw say "):
+        openStrRaw(
+            [
+                lineScript.replace("strraw say ", "", 1)
+            ]
+        )
+    if lineScript.startswith("strraw open "):
+        # strraw open Changelog
+        openStrRaw(open(lineScript.replace("strraw open ", "", 1) + ".strraw").readlines())
     # Math
     if lineScript.startswith("math"):
         # math.add <Bubble1>, <Bubble2>;
