@@ -1,0 +1,12 @@
+class File {
+    @flag Location: raw
+    @flag Mode: raw = UTF-8
+
+    func Read {
+        return &os.readfilelines @Location, @Mode;
+    }
+}
+
+var UwU File Location: ExampleOpens/Stage1.txt, Mode: UTF-8;
+
+say &UwU.Read

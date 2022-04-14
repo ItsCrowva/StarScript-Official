@@ -122,6 +122,8 @@
 #   7:40pm until 10:18pm (13-04-22) - MAJOR MAJOR MAJOR PROGRESS :P. Math & Variable Interaction!
 #   9:00am until 12:30pm (14-04-22) - More math stuff and a bunch of wonderful stuff, gearing up for the RELEASE OF OPEN ALPHA (Such as an installation file)
 
+# 0.2.5
+#   3:39pm until 4:51pm
 
 #from compile import *
 # Run If Main
@@ -227,6 +229,19 @@ def runLine(lineScript, tempObject, attachedVariables):
                 pass
             except:
                 pass
+    # OS
+    if lineScript.startswith("os"):
+        if lineScript.startswith("os.readfilelines "):
+            # return &os.readfilelines @Location, @Mode;
+            Operand = lineScript.split(" ")[1]
+            Operand = Operand.split(",")
+            File = getBubble(Operand[0], attachedVariables)
+            Mode = getBubble(Operand[1], attachedVariables)
+
+            ReturnV = open(File.strip(), "r", encoding=Mode.strip()).readlines()
+            print("ReturnV!!!!", ReturnV)
+            Core.setVreturn(ReturnV)
+            tempObject.update({"return": ReturnV})
     # Strraw
     if lineScript.startswith("strraw say "):
         openStrRaw(

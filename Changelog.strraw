@@ -108,3 +108,8 @@ only been like 7 months of rewrites and developments...
     ^ strraw open <filelocation>
 + Added a [Clear] Text option.
 + openStrRaw function now in Core.py
+
+    0.2.5:3 - 14-04-22 - 4:52pm
++ 6 new files for testing file opens
++ os.readfilelines command in main.py [broken]
++ openafile.str to test stuff

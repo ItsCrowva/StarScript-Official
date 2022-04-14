@@ -65,6 +65,8 @@ except:
     shutil.rmtree(f"{InstallLocation}/Core")
     shutil.copytree("Core", f"{InstallLocation}/Core")
 
+shutil.rmtree(f"{InstallLocation}/Modules")
+shutil.copytree("Core", f"{InstallLocation}/Modules")
 
 print(f"{Clear}20 % - Copying Core Scripts to the new Folder")
 try:shutil.copy("Core.py", f"{InstallLocation}/Core.py")
