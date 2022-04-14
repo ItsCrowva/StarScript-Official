@@ -53,3 +53,28 @@ b:0.2.4
 * Redid the run as class section. Now you can attach flags to an already existing class! (Just not easily attach them :Sweat:)
 * PerformanceTest.str now works! 1,500 lines of just adding 1 to the Main Variable (Using Tick Class)
      ^ This does things because StarScript sends the time the code took, after!
+
+    0.2.4:7 - 14-04-22 - 10:18am
+* Core.py no longer force-prints the attached variables on an @ bubble
++ Documentation on best practices for code speeding
+* Changed the ValueGrabbing.md Document to better-reflect modern changes (new & bubble)
++ Threads Variable
+- Main.py no longer forces mathvalue printing!
++ math.sub
++ math.div
++ math.mul
++ thread<+> statement
++ main.py commands now respond to threads
++ Concept.str script
++ MegaPerformanceTest.str
++ MegaPerformanceTestThread.str
+* Modified PerformanceTest.str
+* Modified settings.json
+
+    0.2.4:8 - 14-04-22 - 10:40am
+**There is now an install file to officially install StarScript!!**
++ ---INSTALL_STARSCRIPT---.py
++ Core.py now checks for settings.json in Core/settings.json
+* settings.json now in the Core folder
+* runLine no longer references Core & windowExtension
+- windowExtension no longer imports graphics.py

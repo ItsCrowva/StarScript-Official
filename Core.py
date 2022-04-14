@@ -3,7 +3,7 @@ import Main
 import RunLine
 
 # System Configuration
-StarSettings = json.load(open("settings.json", "r"))
+StarSettings = json.load(open("Core/settings.json", "r"))
 # System Messages
 Notice =  "\033[96m[ Notic ]\033[0m - " # Letting the user know stuff
 Timing =  "\033[35m[ Timing ]\033[0m - " # Letting the user know stuff

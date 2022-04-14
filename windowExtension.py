@@ -1,7 +1,7 @@
 from tkinter import *
 from turtle import title
 from Core import *
-import graphics
+# import graphics
 
 # from arcade import Window
 
