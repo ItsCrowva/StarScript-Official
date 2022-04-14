@@ -124,6 +124,16 @@ only been like 7 months of rewrites and developments...
 + Visuals.str (To help build up BloomUI & the WindowExtension.py file)
 * completely refactored the windowextension.py file
 
-Build 4.1:
+    0.2.5:5 - (UNSET DATE) - (UNSET TIME)
+    
+    Canary Builds are no longer counted as official Builds
+Build 1:
 * 0.2.4 had an update so;
-    + the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)
++ the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)
+
+Build 2: - 10:48pm - 14-04-22
+* @flag now responds to default values 😅😅
+* Window: flag in BloomUI.str has had type changed from raw to list
+* Changelog.strraw has had some changes.
+
+    Canary Updates are no longer considered different builds.
