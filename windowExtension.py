@@ -35,6 +35,9 @@ def addUIObject(Root, Object):
     if Object.startswith("Background"):
         Child = Object.split(" :: ")
         Root.configure(bg=Child[1])
+    if Object.startswith("hiii"):
+        Item.append(Label(Root, text=Object))
+        Item[-1].pack()
     if Object.startswith("Text"):
         Child = Object.split(" :: ")[1]
 

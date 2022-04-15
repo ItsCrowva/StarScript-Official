@@ -126,6 +126,8 @@
 #   14-04-22
 #       3:39pm until 4:51pm
 #       7:13pm until 9:01pm
+#   15-04-22
+#       10:20am until 11:20am
 
 #from compile import *
 # Run If Main
@@ -230,10 +232,14 @@ def runLine(lineScript, tempObject, attachedVariables):
             except:
                 pass
         if Operation[1][0] == "append":
-            Child = list(attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
-            print(attachedVariables)
-            print("NON LIST", attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
-            print("List Edition of String =", Child)
+            # print(
+            #     attachedVariables
+            # )
+            attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]].append(Result)
+            # print(attachedVariables)
+            # print("NON LIST", attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
+            # print("List Edition of String =", Child)
+
     # OS
     if lineScript.startswith("os"):
         if lineScript.startswith("os.readfilelines "):
@@ -621,15 +627,29 @@ def runScript(script, tempObject, attachedVariables):
                     holdingClass[nameMode].append(aboutToRun[tick])
                 
                 if aboutToRun[tick].startswith("@flag "):
+                    # @flag WindowName: raw = "Unset Window"
                     temp = aboutToRun[tick].split(" ", 1)[1].replace(":", "")
-                    Ven = "Default.Value" # Default Value
-                    if "=" in temp:
-                        # A default value has been detected;
-                        Ven = temp.split(" = ", 1)[1] # The Default Value
-                        input("Ven: " + Ven)
+                    # Should Be: WindowName raw = "Unset Window"
+                    temp = temp.replace("= ", " ", 1)
+                    # Should Be: WindowName raw Unset Window
+                    temp = temp.split(" ", 2)
+
+                    FlagName = temp[0]
+                    FlagType = temp[1]
+                    
+                    FlagValue = "Default.Value" # Default Value
+
+                    if FlagType == "raw":
+                        FlagValue = "Default.Raw"
+                    if FlagType == "list":
+                        FlagValue = []
+
+                    if len(temp) == 3:
+                        # If there is a value
+                        FlagValue = temp[2]
 
                     holdingClass["TagsToFill"].update({
-                        str(temp): Ven
+                        str(FlagName): FlagValue
                     })
                 
 

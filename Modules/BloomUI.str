@@ -4,21 +4,20 @@ say BloomUI has been initialised
 
 class Window {
     @flag WindowName: raw = "Unset Window"
-    @flag Window: list = []
+    @flag Window: list
+    @flag CompiledWindow: raw = "hiiiiii"
 
     func build {
         say Building Window Now!
         raise notice: Script will now attempt to build the Window.
-        MakeWindow @WindowName, @Window
+        
+        MakeWindow @WindowName, @CompiledWindow
     }
 
     func Text {
         @flag Text: raw = "Unset Text"
 
-        @Window.append hiii
+        @Window.append hiii~
     }
 }
 
-func what {
-    say doesn't do shit you fucking idiot
-}
