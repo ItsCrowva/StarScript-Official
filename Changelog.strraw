@@ -159,3 +159,90 @@ Build 4: - 1:41pm - 15-04-22
 - windowExtension no longer prints the Brackets variable when adding UI objects.
 + ConstructWebsite function. Does nothing
 + ConstructWindow function. Takes a list input and turns it into a bloom-appropriate-window-string.
+
+0.2.5 - Beta Test #1 - 1:55pm - 15-04-22
+    Welcome to the first Beta Release for 0.2.5
+
+    This was the result of 9 builds!
+> Smaller Changelog
+- 😎 Window Management! This contains the first WIP version of StrScr's upcoming _Window-Management-System_
+    To test it- Make sure BloomUI is in the Modules folder, OR in the same directory as the python file.
+
+Import it with 
+```swift
+import BloomUI
+```
+and make a window with
+```java
+var Main Window WindowName: <WindowName>;
+```
+Add some text with
+```java
+Main.VListStart -- MUST HAVE A VListEnd HERE
+Main.Text Text: Homepage of the nova!!?!?!;
+Main.Text Text: This is a test of the nova;
+Main.Text Text: This is another test;
+Main.VListEnd -- Final object must be a VListEnd
+```
+then build the window with `Main.buildWindow`
+
+- 💞 Lists!
+    We now have lists! Initialise a list with `@flag <FlagName>: list`.
+
+    Setting custom value will break it atm tho.
+
+    **Append to the list with:** `@<flag>.append <bubble>`
+
+- 🤨 Bug Fixes
+    Numerous major issues were fixed in this beta release. Enjoy!
+
+- 😭 Other
+    - strraw reading command `strraw say <strraw raw>`
+    - strraw open & read command `strraw open <filelocation>`
+    - Join command to join two strings `join String1, String2`
+    - Numerous new commands that, while they aren't finished yet, are there.
+        - os related stuff
+
+> Full Changelog
++ started new beta branch!?
++ added version entry to settings
++ Added a .strraw reading command.
+    ^ strraw say <strraw>
+    ^ strraw open <filelocation>
++ Added a [Clear] Text option.
++ openStrRaw function now in Core.py
++ 6 new files for testing file opens
++ os.readfilelines command in main.py [broken]
++ openafile.str to test stuff
++ @flag.append [Broken]
+^ Flag.append needs to be reworked. Trying to convert a raw (string) to a list temporarily each time- just won't work.
+* Changed all the "read()"s in the import command to say readlines()
++ Script now checks for a modules folder in the directory of the python file.
+* Default Value for non-preset flags is now "Default.Value" rather than "None
++ BloomUI.str (This will be a potential UI Module for working with Websites & Windows)
++ Visuals.str (To help build up BloomUI & the WindowExtension.py file)
+* completely refactored the windowextension.py file
+* 0.2.4 had an update so;
++ the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)
+* @flag now responds to default values 😅😅
+* Window: flag in BloomUI.str has had type changed from raw to list
+* Changelog.strraw has had some changes.
+* List Appending now works :P
++ Setting a flag has been rewritten
+* Made some changes to BloomUI.str
++ Added a temporary "hii" ui object to windowExtension.py
++ the grabvalues function (python) now automatically strips results.
++ new "Join" command. This can join 2 strings together! `join Hello , World
++ The call to the windowextension run line, now accepts a tempobject return.
+- Removed the quotes aroudn placeholder strings in BloomUI...
++ build function in the Window class has been renamed to buildWindow
++ buildWindow now compiles the Window flag.
++ buildHTML command. Does nothing atm.
++ Text command (in window) now works
++ VListStart command in the Window class
++ VListEnd command in the Window class
++ Redid Visuals.str
++ windowExtension now automatically strips the "Object" argument.
+- windowExtension no longer prints the Brackets variable when adding UI objects.
++ ConstructWebsite function. Does nothing
++ ConstructWindow function. Takes a list input and turns it into a bloom-appropriate-window-string.
