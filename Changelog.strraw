@@ -137,3 +137,25 @@ Build 2: - 10:48pm - 14-04-22
 * Changelog.strraw has had some changes.
 
     Canary Updates are no longer considered different builds.
+Build 3: - 12:58pm - 15-04-22
+* List Appending now works :P
++ Setting a flag has been rewritten
+* Made some changes to BloomUI.str
++ Added a temporary "hii" ui object to windowExtension.py
+
+Build 4: - 1:41pm - 15-04-22
++ the grabvalues function (python) now automatically strips results.
++ new "Join" command. This can join 2 strings together! `join Hello , World
++ The call to the windowextension run line, now accepts a tempobject return.
+- Removed the quotes aroudn placeholder strings in BloomUI...
++ build function in the Window class has been renamed to buildWindow
++ buildWindow now compiles the Window flag.
++ buildHTML command. Does nothing atm.
++ Text command (in window) now works
++ VListStart command in the Window class
++ VListEnd command in the Window class
++ Redid Visuals.str
++ windowExtension now automatically strips the "Object" argument.
+- windowExtension no longer prints the Brackets variable when adding UI objects.
++ ConstructWebsite function. Does nothing
++ ConstructWindow function. Takes a list input and turns it into a bloom-appropriate-window-string.

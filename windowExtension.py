@@ -20,6 +20,7 @@ Item = []
 
 def addUIObject(Root, Object):
     global Item
+    Object = Object.strip()
     #Examples:
     #   Text :: ExampleText, 12, Black, Arial
     #   Button :: ClickMe, 12, Black, Arial, FunctionToRun
@@ -36,6 +37,7 @@ def addUIObject(Root, Object):
         Child = Object.split(" :: ")
         Root.configure(bg=Child[1])
     if Object.startswith("hiii"):
+        # input("-Pause-")
         Item.append(Label(Root, text=Object))
         Item[-1].pack()
     if Object.startswith("Text"):
@@ -54,7 +56,7 @@ def addUIObject(Root, Object):
         Brackets = 1 # Starts at one as the above function, covered it
         tick = 1 # To start at the second line
         while Brackets > 0:
-            print(Brackets)
+            # print(Brackets)
             if "[" in Script[tick]:
                 Brackets += 1
             if "]" in Script[tick]:
@@ -81,6 +83,41 @@ def WErunLine(lineScript, tempObject, attachedVariables):
         window = Tk()
         window.title(Core.getBubble(Child[0], attachedVariables))
         addUIObject(window, Core.getBubble(Child[1], attachedVariables))
+    if lineScript.startswith("ConstructWebsite "):
+        # ConstructWebsite @Window
+        Child = lineScript.split(" ", 1)[1]
+        Child = Child.split(",")
+        Operation = Core.getBubble(Child[0], attachedVariables)
+
+        print("will do this later. smh.")
+    if lineScript.startswith("ConstructWindow "):
+        # ConstructWindow @Window
+        Child = lineScript.split(" ", 1)[1]
+
+        Child = Core.getBubble(Child, attachedVariables)
+        # print(Child)
+
+        ReturnV = []
+
+        tick = 0
+        while tick < len(Child):
+            # If VList
+            if Child[tick].startswith("VLStart"):
+                ReturnV.append("VList :: [\n")
+            if Child[tick].startswith("VLEnd"):
+                ReturnV.append("]\n")
+            # If Text:
+            if Child[tick].startswith("Text:"):
+                Operation = Child[tick].replace("Text:", "", 1)
+                # input(Operation)
+                ReturnV.append(f"Text :: {Operation}, 12, Black, Arial\n")
+            tick += 1
+        ReturnV = "".join(ReturnV)
+        # Return
+        # print(ReturnV)
+        Core.setVreturn(ReturnV)
+        tempObject.update({"return": ReturnV})
+    return tempObject
 
 if __name__ == "__main__": 
     root = Tk()

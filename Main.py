@@ -128,6 +128,7 @@
 #       7:13pm until 9:01pm
 #   15-04-22
 #       10:20am until 11:20am
+#       12:56pm until
 
 #from compile import *
 # Run If Main
@@ -253,6 +254,16 @@ def runLine(lineScript, tempObject, attachedVariables):
             print("ReturnV!!!!", ReturnV)
             Core.setVreturn(ReturnV)
             tempObject.update({"return": ReturnV})
+    # Join Text Together
+    if lineScript.startswith("join"):
+        # join Hello, World
+        # join @Hello, @World
+        Child = lineScript.replace("join ", "", 1)
+        Child = Child.split(",", 1)
+        Child[0] = Core.getBubble(Child[0], attachedVariables)
+        Child[1] = Core.getBubble(Child[1], attachedVariables)
+        Core.setVreturn(Child[0] + Child[1])
+        tempObject.update({"return": Child[0] + Child[1]})
     # Strraw
     if lineScript.startswith("strraw say "):
         openStrRaw(
@@ -482,7 +493,7 @@ def runLine(lineScript, tempObject, attachedVariables):
         bprint("Debug", f"Heya! strlng5(2ndEdition) no longer uses the print function. print <Variable Mention>/<Bubble> is a very old command and doesn't work especially since bubbles aren't a thing in this language anymore. Please use `say`. To print raw text: say <Text>. To print a flag/DirectFlagVariable: say @<Variable>")
 
     # Try Running Line from another File
-    if Modules["WindowExtension"]["Enabled"] == True: WErunLine(lineScript, tempObject, attachedVariables)
+    if Modules["WindowExtension"]["Enabled"] == True: tempObject = WErunLine(lineScript, tempObject, attachedVariables)
 
     return tempObject, attachedVariables
 

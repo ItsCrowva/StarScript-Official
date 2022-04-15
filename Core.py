@@ -129,7 +129,7 @@ def grabValues(Input):
             if Input[tick] == "," or Input[tick] == ";":
                 bprint("Notice", "Preparing to paste to variables")
                 scanningMode = "ToInput"
-                currentSetup[str("".join(currentTag)).strip()] = "".join(currentValue)
+                currentSetup[str("".join(currentTag)).strip()] = "".join(currentValue).strip()
                 currentTag = []
                 currentValue = []
         # If Colon on Input- Switch to Value

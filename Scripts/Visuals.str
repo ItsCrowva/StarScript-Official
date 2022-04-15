@@ -4,6 +4,12 @@ import BloomUI
 
 var Main Window WindowName: StarScript;
 
-Main.Text Text: what
-Main.Text Text: hi
-Main.build
+Main.VListStart
+Main.Text Text: Homepage of the nova!!?!?!;
+Main.Text Text: This is a test of the nova;
+Main.Text Text: This is another test;
+Main.VListEnd
+// Main.Text Text: hi;
+// Main.Text Text: hello;
+Main.buildWindow
+Main.buildHTML
