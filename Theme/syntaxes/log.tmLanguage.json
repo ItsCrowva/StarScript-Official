@@ -278,12 +278,7 @@
 		{
 			"include": "#keywords"
 		},
-		{
-			"include": "#extras"
-		},
-		{
-			"include": "#commands"
-		},
+		
 		{
 			"include": "#tagStuff"
 		},
@@ -291,13 +286,37 @@
 			"include": "#date"
 		},
 		{
-			"include": "#mainstuff"
+			"include": "#blocks"
 		},
 		{
-			"include": "#blocks"
+			"include": "#statements"
+		},
+		{
+			"include": "#thread"
 		}
 	],
 	"repository": {
+		"thread": {
+			"patterns": [
+				{
+					"match": "(thread)(<)([+-])(>)",
+					"captures": {
+						"1": {
+							"name": "constant.character"
+						},
+						"2": {
+							"name": "variable"
+						},
+						"3": {
+							"name": "meta"
+						},
+						"4": {
+							"name": "variable"
+						}
+					}
+				}
+			]
+		},
 		"blocks": {
 			"patterns": [
 				{
@@ -310,85 +329,61 @@
 		"tagStuff": {
 			"patterns": [
 				{
-					"name": "constant.character",
-					"match": "(@flag )"
+					"begin": "@[A-z]",
+					"end": "[. ,]",
+					"name": "constant.character"
 				}
 			]
 		},
-		"extras": {
+		"statements": {
 			"patterns": [
 				{
-					"name": "keyword",
-					"match": "setred"
-				},
-				{
-					"name": "strong",
-					"match": "(clearcol)"
-				},
-				{
-					"name": "strong",
-					"match": "(>)"
-				},
-				{
-					"name": "strong",
-					"match": "(setblue)"
-				}
-			]
-		},
-		"commands": {
-			"patterns": [
-				{
-				    "name": "keyword",
-					"match": "(print )"
-				},
-				{
-					"name": "keyword",
-					"match": "(fshout )"
-				},
-				{
-				    "name": "string",
-					"begin": "fshout",
-					"end": ";"
-				},
-				{
-				    "name": "keyword",
-					"match": "(say )"
-				}
-			]
-		},
-		"mainstuff": {
-			"patterns": [
-				{
-				    "name": "keyword.control",
-					"match": "(import )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(if )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(else )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(elif )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(var )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(raise )"
-				},
-				{
-				    "name": "keyword.control",
-					"match": "(func )"
+					"name": "constant.numeric",
+					"match": "([0-9])"
 				},
 				{
 					"name": "keyword.control",
-					"match": "(class )"
+					"match": "(say)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(class)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(func)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(var)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(raise)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(import)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(if)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(else)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(return)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(hash)"
+				},
+				{
+					"name": "keyword.control",
+					"match": "(delay)"
 				}
 			]
 		},
@@ -414,11 +409,15 @@
 			]
 		},
 		"date": {
-			"patterns": [{
+			"patterns": [
+				{
 					"match": "([0-9]{4}-[0-9]{2}-[0-9]{2})( - )([0-9]{2}:[0-9]{2}:[0-9]{2})",
 					"captures": {
 						"1": {
 							"name": "markup.changed.log"
+						},
+						"2": {
+							"name": "string.jade"
 						},
 						"3": {
 							"name": "keyword.control"

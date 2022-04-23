@@ -1,0 +1,6 @@
+Hello!
+
+This is the uncompleted section.
+
+This section contains scripts that are either concepts of how future code should look and maybe function
+or are currently being used to actively develop something
