@@ -95,6 +95,7 @@ def betterPrint(Type, *args, Thread="Unset"):
     if StarSettings["alerts"]["Error"] == True:
         if Type == "Error":
             print(f"{Error}{String}")
+            Main.SetGR("❌ Error: " + String)
     if StarSettings["alerts"]["Success"] == True:
         if Type == "Success":
             print(f"{Success}{String}")
@@ -107,6 +108,7 @@ def betterPrint(Type, *args, Thread="Unset"):
     # if StarSettings["alerts"]["AnnounceOutputs"] == True:
     if Type == "AnnounceOutputs":
             print(f"{AnnounceOutputs}{String}")
+            Main.SetGR(String)
 
 # Grab Values from a command
 def grabValues(Input):

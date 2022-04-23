@@ -129,6 +129,9 @@
 #   15-04-22
 #       10:20am until 11:20am
 #       12:56pm until
+#   21-04-22
+#       12:03pm until 1:04pm - If Statements
+#           12:57pm - We've finally reached a point where if/else statements are working
 
 #from compile import *
 # Run If Main
@@ -140,6 +143,7 @@ from Core import *
 import Core
 from RunLine import *
 from ast import Dict, Global
+from hashlib import *
 from tempfile import TemporaryDirectory
 from windowExtension import *
 from copyreg import pickle
@@ -240,8 +244,35 @@ def runLine(lineScript, tempObject, attachedVariables):
             # print(attachedVariables)
             # print("NON LIST", attachedVariables[attachedVariables["$Selection"]]["Flags"][Operation[0]])
             # print("List Edition of String =", Child)
+    # Hasing
+    if lineScript.startswith("hash.256 "):
+        Operand = lineScript.split("hash.256 ")[1]
+        # Grab a flat value
+        File = getBubble(Operand, attachedVariables)
+        Output = sha256(File)
 
-    # OS
+        # Return
+        Core.setVreturn(Output)
+        tempObject.update({"return": Output})
+    if lineScript.startswith("hash.512 "):
+        Operand = lineScript.split("hash.512 ")[1]
+        # Grab a flat value
+        File = getBubble(Operand, attachedVariables)
+        Output = sha512(File)
+
+        # Return
+        Core.setVreturn(Output)
+        tempObject.update({"return": Output})
+    if lineScript.startswith("hash.1 "):
+        Operand = lineScript.split("hash.1 ")[1]
+        # Grab a flat value
+        File = getBubble(Operand, attachedVariables)
+        Output = sha1(File)
+
+        # Return
+        Core.setVreturn(Output)
+        tempObject.update({"return": Output})
+    # OS 
     if lineScript.startswith("os"):
         if lineScript.startswith("os.readfilelines "):
             # return &os.readfilelines @Location, @Mode;
@@ -424,8 +455,9 @@ def runLine(lineScript, tempObject, attachedVariables):
     if lineScript.startswith("say "):
         SplitDrive = lineScript.split(" ", 1)[1]
 
-        Response = getBubble(SplitDrive, attachedVariables)
-        print(f"{AnnounceOutputs}{Response}")
+        Response = Core.getBubble(SplitDrive, attachedVariables)
+        # print(f"{AnnounceOutputs}{Response}")
+        betterPrint("AnnounceOutputs", Response)
         # # print(f"{AnnounceOutputs}Direct Paste of Variable:{attachedVariables[SplitDrive]}")
         # if lineScript.split(" ", 1)[1].startswith("@"):
         #     SplitDrive = SplitDrive.replace("@", "", 1)
@@ -497,10 +529,14 @@ def runLine(lineScript, tempObject, attachedVariables):
 
     return tempObject, attachedVariables
 
+IfStatements = [
+    True # THIS HAS TO BE TRUE FOR THE LINES TO RUN BY DEFAULT
+]
 
 def runScript(script, tempObject, attachedVariables):
     global GlobalClasses
     global Threads
+    global IfStatements
     # script = script.replace("^*^", "\n")
     tempPointer = 0
     # print(script)
@@ -516,6 +552,8 @@ def runScript(script, tempObject, attachedVariables):
     className = "What"
     classTicker = 0
     holdingClass = {}
+
+    ifBracket = 0
 
     # RUN
     while tempPointer < scriptLength:
@@ -537,7 +575,69 @@ def runScript(script, tempObject, attachedVariables):
                 elif aboutToRun[tick].startswith("/-"):
                     previousMode = str(lineMode)
                     lineMode = "Comment"
-                elif aboutToRun[tick].startswith("class"):
+                elif aboutToRun[tick].startswith("if "):
+                    # Equal
+                    if ", ==, " in aboutToRun[tick]:
+                        Factor = aboutToRun[tick].split(", ==, ")
+                        Factor[1] = Factor[1].replace(" {", "")
+                        Factor[0] = Factor[0].strip()
+                        Factor[0] = Factor[0].replace("if ", "")
+                        Factor[1] = Factor[1].strip()
+                        Factor[0] = Core.getBubble(Factor[0], attachedVariables)
+                        Factor[1] = Core.getBubble(Factor[1], attachedVariables)
+                        # print("IF:", Factor)
+                        if Factor[0] == Factor[1]:
+                            IfStatements.append(True) # True = If Statement Passed
+                        else:
+                            IfStatements.append(False)
+                    if ", >, " in aboutToRun[tick]:
+                        Factor = aboutToRun[tick].split(", >, ")
+                        Factor[1] = Factor[1].replace(" {", "")
+                        Factor[0] = Factor[0].strip()
+                        Factor[0] = Factor[0].replace("if ", "")
+                        Factor[1] = Factor[1].strip()
+                        Factor[0] = Core.getBubble(Factor[0], attachedVariables)
+                        Factor[1] = Core.getBubble(Factor[1], attachedVariables)
+                        # print("IF:", Factor)
+                        if Factor[0] > Factor[1]:
+                            IfStatements.append(True) # True = If Statement Passed
+                        else:
+                            IfStatements.append(False)
+                    if ", <, " in aboutToRun[tick]:
+                        Factor = aboutToRun[tick].split(", <, ")
+                        Factor[1] = Factor[1].replace(" {", "")
+                        Factor[0] = Factor[0].strip()
+                        Factor[0] = Factor[0].replace("if ", "")
+                        Factor[1] = Factor[1].strip()
+                        Factor[0] = Core.getBubble(Factor[0], attachedVariables)
+                        Factor[1] = Core.getBubble(Factor[1], attachedVariables)
+                        # print("IF:", Factor)
+                        if Factor[0] < Factor[1]:
+                            IfStatements.append(True) # True = If Statement Passed
+                        else:
+                            IfStatements.append(False)
+                # If line contains { & mode is if denied- add to bracket factor
+                if "}" in aboutToRun[tick]:
+                            # Closing statement. Figure out if the statement is an end of if, other value or an else
+                            ifBracket -= 1
+                            if aboutToRun[tick] == "}":
+                                # If has ended
+                                if ifBracket == 0:
+                                    IfStatements.pop(-1)
+                            elif aboutToRun[tick] == "} else {":
+                                if IfStatements[-1] == False:
+                                    # Else is valid
+                                    IfStatements.pop(-1)
+                                    IfStatements.append(True)
+                                else:
+                                    # Not Valid
+                                    ifBracket += 1
+                                    IfStatements.pop(-1)
+                                    IfStatements.append(False)
+                elif "{" in aboutToRun[tick]:
+                            ifBracket += 1
+                if IfStatements[-1] == True:
+                  if aboutToRun[tick].startswith("class"):
                     holdingCell = []
                     otherMode = "None" # Current Class-Working Mode
                     className = aboutToRun[tick].split(" ")[1]
@@ -552,7 +652,7 @@ def runScript(script, tempObject, attachedVariables):
                     }
                     lineMode = "Class"
                     classTicker = 0 # Should be a value of 1 however it gets set to one in the linemode = class
-                else:
+                  else:
                     # See if line is a variable {Class}?
                     # print("ATOTHEV", attachedVariables)
 
@@ -561,7 +661,7 @@ def runScript(script, tempObject, attachedVariables):
                         ThreadMode = True
                         aboutToRun[tick] = aboutToRun[tick].replace("thread<+>", "", 1)
                     else:
-                        ThreadMode = False
+                      ThreadMode = False
 
                     if aboutToRun[tick].split(".")[0] in attachedVariables:
                         # Main.value
@@ -588,7 +688,7 @@ def runScript(script, tempObject, attachedVariables):
                             Threads[-1].start()
                         else:
                             runScript(GlobalClasses[ClassType][TempLine[1][0]], tempObject, handOffVariable)#.update(addedVariables))
-                    # See if the line is a class (Undefined Class)
+                      # See if the line is a class (Undefined Class)
                     if aboutToRun[tick].split(".")[0] in GlobalClasses:
                         # This means it's possible to run as a class!
                         TempLine = aboutToRun[tick].split(".")
@@ -609,12 +709,12 @@ def runScript(script, tempObject, attachedVariables):
                         # Run As Thread or
                     if ThreadMode == True:
                         # aboutToRun[tick] = aboutToRun[tick][8:]
-                        Threads.append(threading.Thread(target=runLine, args=(aboutToRun[tick], tempObject, attachedVariables)))
+                        Threads.append(threading.Thread(target=runLine, args=(aboutToRun[tick].split("--")[0], tempObject, attachedVariables)))
                         Threads[-1].start()
                         # return tempObject, attachedVariables
                     else:
                         # Run as Line
-                        tempObject, attachedVariables = runLine((aboutToRun[tick].replace("\n", "")).replace("\\n", "\n"), tempObject, attachedVariables)
+                        tempObject, attachedVariables = runLine((aboutToRun[tick].replace("\n", "")).replace("\\n", "\n").split("--")[0], tempObject, attachedVariables)
             if lineMode == "Class":
                 # Construct a class object to send directly to the makeClass function
                 if "{" in aboutToRun[tick]:
@@ -623,8 +723,8 @@ def runScript(script, tempObject, attachedVariables):
                     classTicker -= 1
                 if classTicker == 1:
                     otherMode = "*AboutToGoNone*"
-                
-                # Function Initialisation
+                            
+                # Functions
                 if aboutToRun[tick].startswith("func"):
                     nameMode = aboutToRun[tick].split(" ")[1]
                     otherMode = "AboutToFunction"
@@ -694,6 +794,27 @@ def runScript(script, tempObject, attachedVariables):
 #         }
 #     }
 # }
+def SetGR(Value):
+    global GlobalResponse
+    GlobalResponse.append(Value)
+def ClearGR(Value):
+    global GlobalResponse
+    GlobalResponse = []
+
+GlobalResponse = []
+
+def botRunLine(Line):
+    global GlobalResponse
+    print(GlobalResponse)
+    runScript([Line], {
+        "LinesRan": 0
+    }, GlobalVariables)
+    NewResponse = []
+    NewResponse.append(GlobalResponse)
+    GlobalResponse = []
+    # input("-")
+    # input(NewResponse)
+    return NewResponse[0]
 
 # GlobalTD = runScript(open(f"{os.getcwd()}\\Scripts\\FeatureTest.str", "r").readlines(), GlobalTD, GlobalVariables)
 
@@ -714,3 +835,4 @@ if __name__ == "__main__":
     end_time = time.perf_counter()
     # print(end_time)
     betterPrint("Timing", f'It took {end_time - start_time: 0.2f} second(s) to complete.')
+    betterPrint("Timing", f'The current if data is {IfStatements}')

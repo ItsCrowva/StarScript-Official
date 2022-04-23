@@ -1,0 +1,12 @@
+-- If & Else statements to be in StrScr 0.2.5 so let's make it work
+
+
+--      Is your age allowed on this site?
+say ho--hi
+
+-- new if statements oml
+if #What is your age?, >, 12 {
+  say User is over 13 years of age!
+} else {
+  say You can't use this platform sorry!
+}
