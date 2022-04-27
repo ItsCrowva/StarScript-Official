@@ -1,0 +1,15 @@
+-- idc whether this ends up as a website or whatever
+-- as long as it works
+import BloomUI
+
+var Main Window WindowName: StarScript;
+--  Name  Type    Flag#1      Value
+Main.VListStart
+Main.Text Text: Homepage of the nova!!?!?!;
+Main.Text Text: This is a test of the nova;
+Main.Text Text: This is another test;
+Main.VListEnd
+// Main.Text Text: hi;
+// Main.Text Text: hello;
+Main.buildWindow
+Main.buildHTML

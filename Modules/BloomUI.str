@@ -1,0 +1,35 @@
+-- BloomUI by the nova!?!!?!?!
+
+say BloomUI has been initialised
+
+class Window {
+    @flag WindowName: raw = "Unset Window"
+    @flag Window: list
+    @flag CompiledWindow: raw = hiii
+
+    func buildWindow {
+        say Building Window Now!
+        raise notice: Script will now attempt to build the Window.
+        @CompiledWindow.set &ConstructWindow @Window
+        MakeWindow @WindowName, @CompiledWindow
+    }
+
+    func buildHTML {
+        say why did i make this
+        ConstructWebsite @Window
+        say locate index.html ig...
+    }
+
+    func Text {
+        @flag Text: raw = "Unset Text"
+
+        @Window.append &join Text:, @Text
+    }
+    
+    func VListStart {
+        @Window.append VLStart
+    }
+    func VListEnd {
+        @Window.append VLEnd
+    }
+}

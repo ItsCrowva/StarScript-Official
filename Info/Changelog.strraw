@@ -1,0 +1,267 @@
+-- Star Script Raw File (StrRaw)
+-- This is not supposed to be able to run code. Just offer code highlighting and text colors.
+
+
+
+b:0.2.4
+    0.2.4:1
+- Moved __EVERYTHING__ into a repository folder
+
+    0.2.4:2 - 13/04/22 - 5:03pm
++ New Changelog.json File for easier change tracking
++ Changelog.strraw
++ New StrRaw file format concept
+* Added Comment in Main.py to mention the new json changelog
+
+    0.2.4:3 - 13/04/22 - 5:27pm
+* Split Info for 0.2.4:2
+* Changed Core.py's "betterPrint" function to use *args instead of manually adding each string point as input. This means the amount of strings you can attach when you use betterPrint to print an item, goes from 10 to Infinite
+* Changed betterPrints String setter variable to work with *args
++ Added "Timing" printing type
+* Added "Timing" printing type to settings.json
++ StrScr now tells you how long an action took after it completes it, when ran from console. (Toggleable under "Timing")
++ Added "PerformanceTest.str" which will be scripted in Build:4
++ Copied Scripts/FeatureTest.str to a new file "Test.str"
++ Added "ResponseInformation" object to settings.json.
+    This will be used to attach thread information before lines, at a later date.
+
+    0.2.4:4 - 13-04-22 - 6:47pm
++ Core.py now has Main.py as a module
+* GlobalTD(Main) now has a default value
++ getBubble(Core) now has the "&" accessory added.
+    This doesn't do the intended function yet. It returns a placeholder value.
++ "GoTicker" Variable has been added and in referenced by RunLine
++ runLine adds 1 to the "LinesRan" entry to TempObject upon any command that's run (so long as linesran is in the TempData)
++ Return Command
++ Run Command now uses TempObject rather than GlobalTempData for the attached TempObject
++ Main.py only brings up the command line if it's ran as a non-module
+- Main.py no longer prints end_time as well as the official time
+
+    0.2.4:5 - 13-04-22 - 7:56pm
+- Removed GlobalTD & Modules from Core.py and put into Main
++ vReturn variable in Core.py (For the return statement)
++ setvReturn function
+* Bubble Function now respects comments.... mostly....
++ "&" bubble now works
+* references to core.py in the return statement now directly start with "Core."
+* Return Statement now sends the return function by directly changing "vReturn" in Core.py
+* Made some appends to PerformanceTest.str
+
+    0.2.4:6 - 13-04-22 - 9:41pm
++ math.add statement. Provide two bubbles, the code will add them together & put them as a return!
++ @<flagname>.set <bubble> - Set a flag (Whether it be a currently active one or a class value, to <bubbles> value!
+* Redid the run as class section. Now you can attach flags to an already existing class! (Just not easily attach them :Sweat:)
+* PerformanceTest.str now works! 1,500 lines of just adding 1 to the Main Variable (Using Tick Class)
+     ^ This does things because StarScript sends the time the code took, after!
+
+    0.2.4:7 - 14-04-22 - 10:18am
+* Core.py no longer force-prints the attached variables on an @ bubble
++ Documentation on best practices for code speeding
+* Changed the ValueGrabbing.md Document to better-reflect modern changes (new & bubble)
++ Threads Variable
+- Main.py no longer forces mathvalue printing!
++ math.sub
++ math.div
++ math.mul
++ thread<+> statement
++ main.py commands now respond to threads
++ Concept.str script
++ MegaPerformanceTest.str
++ MegaPerformanceTestThread.str
+* Modified PerformanceTest.str
+* Modified settings.json
+
+    0.2.4:8 - 14-04-22 - 10:40am
+**There is now an install file to officially install StarScript!!**
++ ---INSTALL_STARSCRIPT---.py
++ Core.py now checks for settings.json in Core/settings.json
+* settings.json now in the Core folder
+* runLine no longer references Core & windowExtension
+- windowExtension no longer imports graphics.py
+
+    0.2.4:9 - 14-04-22 - 10:51am
++ settings.json is now setup in the installation.
+
+    0.2.4:10 - 14-04-22 - 2:10pm
++ math module!?
++ added math.cos <bubble>; as an internal guide >x<
++ math.cos
++ math.tan
++ math.sin
++ thread<wait>
++ delay
++ Added some more example scripts
+ALSO- We're releasing StrScr on this build!
+#Excitement
+
+only been like 7 months of rewrites and developments...
+~~and only been 2 months since i said i'd release~~
+
+
+    0.2.5:1 - 14-04-22 - 2:50pm
++ started new beta branch!?
++ added version entry to settings
+
+    0.2.5:2 - 14-04-22 - 3:17pm
++ Added a .strraw reading command.
+    ^ strraw say <strraw>
+    ^ strraw open <filelocation>
++ Added a [Clear] Text option.
++ openStrRaw function now in Core.py
+
+    0.2.5:3 - 14-04-22 - 4:52pm
++ 6 new files for testing file opens
++ os.readfilelines command in main.py [broken]
++ openafile.str to test stuff
+
+    0.2.5:4 - 14-04-22 - 10:13pm
++ @flag.append [Broken]
+^ Flag.append needs to be reworked. Trying to convert a raw (string) to a list temporarily each time- just won't work.
+* Changed all the "read()"s in the import command to say readlines()
++ Script now checks for a modules folder in the directory of the python file.
+* Default Value for non-preset flags is now "Default.Value" rather than "None
++ BloomUI.str (This will be a potential UI Module for working with Websites & Windows)
++ Visuals.str (To help build up BloomUI & the WindowExtension.py file)
+* completely refactored the windowextension.py file
+
+    0.2.5:5 - (UNSET DATE) - (UNSET TIME)
+    
+    Canary Builds are no longer counted as official Builds
+Build 1:
+* 0.2.4 had an update so;
++ the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)
+
+Build 2: - 10:48pm - 14-04-22
+* @flag now responds to default values 😅😅
+* Window: flag in BloomUI.str has had type changed from raw to list
+* Changelog.strraw has had some changes.
+
+    Canary Updates are no longer considered different builds.
+Build 3: - 12:58pm - 15-04-22
+* List Appending now works :P
++ Setting a flag has been rewritten
+* Made some changes to BloomUI.str
++ Added a temporary "hii" ui object to windowExtension.py
+
+Build 4: - 1:41pm - 15-04-22
++ the grabvalues function (python) now automatically strips results.
++ new "Join" command. This can join 2 strings together! `join Hello , World
++ The call to the windowextension run line, now accepts a tempobject return.
+- Removed the quotes aroudn placeholder strings in BloomUI...
++ build function in the Window class has been renamed to buildWindow
++ buildWindow now compiles the Window flag.
++ buildHTML command. Does nothing atm.
++ Text command (in window) now works
++ VListStart command in the Window class
++ VListEnd command in the Window class
++ Redid Visuals.str
++ windowExtension now automatically strips the "Object" argument.
+- windowExtension no longer prints the Brackets variable when adding UI objects.
++ ConstructWebsite function. Does nothing
++ ConstructWindow function. Takes a list input and turns it into a bloom-appropriate-window-string.
+
+0.2.5 - Beta Test #1 - 1:55pm - 15-04-22
+    Welcome to the first Beta Release for 0.2.5
+
+    This was the result of 9 builds!
+> Smaller Changelog
+- 😎 Window Management! This contains the first WIP version of StrScr's upcoming _Window-Management-System_
+    To test it- Make sure BloomUI is in the Modules folder, OR in the same directory as the python file.
+
+Import it with 
+```swift
+import BloomUI
+```
+and make a window with
+```java
+var Main Window WindowName: <WindowName>;
+```
+Add some text with
+```java
+Main.VListStart -- MUST HAVE A VListEnd HERE
+Main.Text Text: Homepage of the nova!!?!?!;
+Main.Text Text: This is a test of the nova;
+Main.Text Text: This is another test;
+Main.VListEnd -- Final object must be a VListEnd
+```
+then build the window with `Main.buildWindow`
+
+- 💞 Lists!
+    We now have lists! Initialise a list with `@flag <FlagName>: list`.
+
+    Setting custom value will break it atm tho.
+
+    **Append to the list with:** `@<flag>.append <bubble>`
+
+- 🤨 Bug Fixes
+    Numerous major issues were fixed in this beta release. Enjoy!
+
+- 😭 Other
+    - strraw reading command `strraw say <strraw raw>`
+    - strraw open & read command `strraw open <filelocation>`
+    - Join command to join two strings `join String1, String2`
+    - Numerous new commands that, while they aren't finished yet, are there.
+        - os related stuff
+
+> Full Changelog
++ started new beta branch!?
++ added version entry to settings
++ Added a .strraw reading command.
+    ^ strraw say <strraw>
+    ^ strraw open <filelocation>
++ Added a [Clear] Text option.
++ openStrRaw function now in Core.py
++ 6 new files for testing file opens
++ os.readfilelines command in main.py [broken]
++ openafile.str to test stuff
++ @flag.append [Broken]
+^ Flag.append needs to be reworked. Trying to convert a raw (string) to a list temporarily each time- just won't work.
+* Changed all the "read()"s in the import command to say readlines()
++ Script now checks for a modules folder in the directory of the python file.
+* Default Value for non-preset flags is now "Default.Value" rather than "None
++ BloomUI.str (This will be a potential UI Module for working with Websites & Windows)
++ Visuals.str (To help build up BloomUI & the WindowExtension.py file)
+* completely refactored the windowextension.py file
+* 0.2.4 had an update so;
++ the math changes to 0.2.4 have been brought over to .5 (Credit to PixelSam123)
+* @flag now responds to default values 😅😅
+* Window: flag in BloomUI.str has had type changed from raw to list
+* Changelog.strraw has had some changes.
+* List Appending now works :P
++ Setting a flag has been rewritten
+* Made some changes to BloomUI.str
++ Added a temporary "hii" ui object to windowExtension.py
++ the grabvalues function (python) now automatically strips results.
++ new "Join" command. This can join 2 strings together! `join Hello , World
++ The call to the windowextension run line, now accepts a tempobject return.
+- Removed the quotes aroudn placeholder strings in BloomUI...
++ build function in the Window class has been renamed to buildWindow
++ buildWindow now compiles the Window flag.
++ buildHTML command. Does nothing atm.
++ Text command (in window) now works
++ VListStart command in the Window class
++ VListEnd command in the Window class
++ Redid Visuals.str
++ windowExtension now automatically strips the "Object" argument.
+- windowExtension no longer prints the Brackets variable when adding UI objects.
++ ConstructWebsite function. Does nothing
++ ConstructWindow function. Takes a list input and turns it into a bloom-appropriate-window-string.
+
+>   Beta #2 - 0.2.5
+Build 1: - 4:13pm - 23-04-22
+- It's been a while lol.
++ Added some pass-back functions to certain prints in core.py
++ Hashing!
++ hash.256
++ hash.512
++ hash.1
+* Changed some stuff in the say command
++ "ifStatements" variable
++ if/else statements are available!
+* strscr responds to comments better
++ setgr + cleargr internal commands
+- Datapackdemo.str moved to uncompleted
++ ifelse.str
+* moved Visuals.str to uncompleted
++ "terminalbot" - uh-
++ the uncompleted vscode extension has had some major changes! It highlights correctly for the most-part :P

@@ -1,0 +1,5 @@
+0.2.5:
+    - List Functionality!
+    - Join Strings with `join <bubble1>, <bubble2>`
+    - hash strings with the hash command
+    - if/else statements

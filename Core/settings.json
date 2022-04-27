@@ -1,4 +1,5 @@
 {
+    "version": "0.2.5",
     "quickInfo": "This is to configure strscr for Python/GoLang/Swift",
     "errorsCrashProgram": true,
     "tempValuesAreBinding": false,
